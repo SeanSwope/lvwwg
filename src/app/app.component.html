@@ -326,6 +326,8 @@
 </div>
 
 <div class="content" role="main">
+  <p-splitButton label="Save" icon="pi pi-check" (onClick)="onSave()" [model]="items"></p-splitButton>
+
 
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
@@ -473,6 +475,8 @@
 
 </div>
 
+
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
@@ -482,3 +486,4 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet></router-outlet>
+
