@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, PrimeNGConfig } from 'primeng/api';
+import { Router } from '@angular/router';
+import { MegaMenuItem, MenuItem, PrimeNGConfig } from 'primeng/api';
 import { PrimeIcons } from 'primeng/api';
 
 @Component({
@@ -9,23 +10,60 @@ import { PrimeIcons } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   title = 'Lehigh Valley Woodworkes Guild';
-  items!: MenuItem[];
+  menuItems!: MenuItem[];
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
       this.primengConfig.ripple = true;
 
-      this.items = [
-        {label: 'Update', icon: 'pi pi-refresh', command: () => { this.onSave(); }},
-        {label: 'Delete', icon: 'pi pi-times', command: () => { this.onSave(); }},
-        {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
-        {separator: true},
-        {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
+      this.menuItems = [
+        {label: 'Home', id: '101', icon: 'far fa-handshake' },
+        {label: 'Meetings', id: '102', icon: 'far fa-handshake' },
+        {label: 'Newsletter', id: '103', icon: 'far fa-newspaper' },
+        {label: 'Gallery', id: '104', icon: 'far fa-images' },
+        {label: 'Projects', id: '105', icon: 'fas fa-tasks' },
+        {label: 'Members Mart', id: '106', icon: 'fas fa-store' },
+        // {label: 'Wood Deals', id: '107', icon: 'fas fa-comment-dollar' },
+        // {label: 'Friends', id: '108', icon: 'fas fa-user-friends' },
+        {label: 'Links', id: '109', icon: 'fas fa-info-circle' },
+        // {label: 'Contact Us', id: '110', icon: 'far fa-envelope' },
     ];
   }
 
-  onSave() {
-    alert('onSave() pressed');
+  onAction(menuItem: MenuItem) {
+    const navigationDetails: string[] = [];
+
+    switch (menuItem.id) {
+      case '101':
+        navigationDetails.push('/home');
+        break;
+      case '102':
+        navigationDetails.push('/meetings');
+        break;
+      case '103':
+      break;
+      case '104':
+        navigationDetails.push('/gallery');
+        break;
+      case '105':
+      break;
+      case '106':
+      break;
+      case '107':
+      break;
+      case '108':
+      break;
+      case '109':
+        navigationDetails.push('/links');
+        break;
+      case '110':
+      break;
+    }
+
+    this.router.navigate(navigationDetails);
   }
 }

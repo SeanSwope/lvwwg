@@ -1,39 +1,80 @@
-.custom-marker {
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
+:host /deep/ .p-button-text {
+  color: beige;
+ }
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+
+  .top-header {
     display: flex;
-    width: 2rem;
-    height: 2rem;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    border-radius: 50%;
-    z-index: 1;
-  }
-  
-  ::ng-deep {
-    .p-timeline-event-content,
-    .p-timeline-event-opposite {
-      line-height: 1;
-    }
-  }
-  
-  @media screen and (max-width: 960px) {
-    ::ng-deep {
-      .customized-timeline {
-        .p-timeline-event:nth-child(even) {
-          flex-direction: row !important;
-  
-          .p-timeline-event-content {
-            text-align: left !important;
-          }
-        }
-  
-        .p-timeline-event-opposite {
-          flex: 0;
-        }
-  
-        .p-card {
-          margin-top: 1rem;
-        }
+    // background-color: sandybrown;
+    background-image: url('../assets/wood-1.jpg');
+    height: 6em;
+
+    .left-side {
+      flex: 1 1 auto;
+      align-items: center;
+
+      span {
+        font-size: 3em;
+        padding: 0 0 0 1em;
+        color: rgb(251, 250, 250);
       }
     }
+
+    .right-side {
+      align-items: center;
+      flex: 0 1 auto;
+      padding: 0 1em 0 0;
+      color: rgb(251, 250, 250);    }
   }
+
+  .main-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    height: 100%;
+
+    /* Image Location */
+    background-image: url("../assets/background75.jpg");
+
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+
+    .left-sidebar {
+      display: flex;
+      flex-direction: column;
+      flex: 0 1 auto;
+      align-self: auto;
+      // background-color: burlywood;
+      width: 8em;
+      border-right: 1.5px solid black;
+     }
+
+    .main-layout {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      align-self: auto;
+    }
+  }
+}

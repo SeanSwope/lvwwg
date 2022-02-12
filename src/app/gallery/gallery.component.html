@@ -1,0 +1,12 @@
+<div class="contents">
+  <div class="title-bar">
+    <span>Gallery</span>
+  </div>
+  <div class="content-body">
+    <p-galleria [value]="images" panelWidth="280" panelHeight="175" showCaption="false">
+      <ng-template pTemplate="item" let-item>
+          <img [src]="item.previewImageSrc" [alt]="item.alt" />
+      </ng-template>
+  </p-galleria>
+  </div>
+</div>
