@@ -12,6 +12,10 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { GalleriaModule } from 'primeng/galleria';
 import { AccordionModule } from 'primeng/accordion';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +28,6 @@ import { MembersMartComponent } from './members-mart/members-mart.component';
 import { WoodDealsComponent } from './wood-deals/wood-deals.component';
 import { FriendsComponent } from './friends/friends.component';
 import { LinksComponent } from './links/links.component';
-import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
@@ -39,7 +42,6 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     WoodDealsComponent,
     FriendsComponent,
     LinksComponent,
-    ContactComponent,
     HomeComponent,
     ContactUsComponent
   ],
@@ -58,6 +60,10 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     TableModule,
     GalleriaModule,
     AccordionModule,
+    InputTextModule,
+    CheckboxModule,
+    InputTextareaModule,
+    DropdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

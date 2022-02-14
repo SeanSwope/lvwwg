@@ -1,1 +1,52 @@
-<p>contact-us works!</p>
+<div class="contents">
+  <div class="title-bar">
+    <span>Contact Us</span>
+  </div>
+  <div class="content-body">
+    <span>We want to hear from you.</span>
+
+    <!-- Name -->
+    <div class="input-group">
+      <span>Your Name</span>
+      <input class="full-width" type="text" pInputText [(ngModel)]="senderName"/>
+    </div>
+
+    <!-- Email -->
+    <div class="input-group">
+      <span>Your Email</span>
+      <input class="full-width"  type="text" pInputText [(ngModel)]="senderEmail"/>
+    </div>
+
+    <!-- Subject -->
+    <div class="input-group">
+      <span>Subject</span>
+      <p-dropdown
+        styleClass="width: full-width"
+        optionLabel="label"
+        optionValue="value"
+        [options]="subjectOptions"
+        [(ngModel)]="selectedSubject"
+        placeholder="Select a Subject">
+      </p-dropdown>
+    </div>
+
+    <!-- Message -->
+    <div class="input-group">
+      <span>Message</span>
+      <textarea
+        class="full-width"
+        pInputTextarea
+        rows="10"
+        [(ngModel)]="message"></textarea>
+    </div>
+
+    <!-- Copy -->
+    <div class="input-group">
+      <p-checkbox [(ngModel)]="copyMe" [binary]="true" inputId="binary"></p-checkbox>
+      <label for="binary">Send me a copy of this message</label>
+    </div>
+
+    <!-- Send button -->
+    <p-button label="Send" icon="pi pi-send" (onClick)="onSend()"></p-button>
+  </div>
+</div>
