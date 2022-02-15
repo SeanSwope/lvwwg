@@ -1,1 +1,38 @@
-<p>newletter works!</p>
+<div class="contents">
+  <div class="title-bar">
+    <span>Monthly Newsletters</span>
+  </div>
+  <div class="content-body">
+    <span>Guild newsletters are here for the convenience of members and visitors. Comments and suggestions on content are welcome.</span>
+
+    <div class="input-group">
+      <span>Select a newsletter and press View</span>
+      <div class="input-row">
+        <p-dropdown
+          styleClass="width: full-width"
+          [group]="true"
+          [options]="newsletterOptions"
+          [(ngModel)]="selectedNewsletter"
+          placeholder="Newsletters">
+
+          <ng-template let-group pTemplate="group">
+            <div class="flex align-items-center">
+                <span>{{group.label}}</span>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <!-- View button -->
+        <p-button label="View" icon="pi pi-file-pdf" (onClick)="onView()"></p-button>
+
+      </div>
+    </div>
+
+    <div *ngIf="showFile">
+      <ngx-extended-pdf-viewer
+        [src]="selectedNewsletter"
+        [useBrowserLocale]="true">
+      </ngx-extended-pdf-viewer>
+    </div>
+  </div>
+</div>

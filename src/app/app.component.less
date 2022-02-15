@@ -26,11 +26,20 @@
 
     .left-side {
       flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
       align-items: center;
+
+      img {
+        width: 5em;
+        height: 5em;
+        margin-left: 1.75em;
+       // transform: rotate(9deg);
+      }
 
       span {
         font-size: 3em;
-        padding: 0 0 0 1em;
+        padding: 0 0 0 .33em;
         color: rgb(251, 250, 250);
       }
     }
@@ -70,7 +79,7 @@
       align-self: auto;
       // background-color: burlywood;
       width: 8em;
-      border-right: 1.5px solid black;
+      //border-right: 1.5px solid black;
      }
 
     .main-layout {

@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
         navigationDetails.push('/meetings');
         break;
       case '103':
+        navigationDetails.push('/newsletter');
       break;
       case '104':
         navigationDetails.push('/gallery');

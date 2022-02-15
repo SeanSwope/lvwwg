@@ -1,0 +1,50 @@
+@import "../common.less";
+
+:host /deep/ .p-button {
+  margin: 1em 0 0 0;
+}
+
+.contents {
+
+  .content-body {
+
+    .content-row {
+      display: flex;
+      flex-direction: row;
+      padding: 0 0 1em 0;
+
+      .row-left {
+        display: flex;
+        flex-direction: column;
+        //align-items: center;
+
+        img {
+          max-width: 135px;
+          height: auto;
+          border-radius: 8px;
+        }
+      }
+
+      .row-right {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+
+        margin: 0 0 0 1em;
+
+        .name {
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .year-range {
+          font-style: italic;
+        }
+
+        .details {
+          margin-top: .5em;
+        }
+      }
+    }
+  }
+}

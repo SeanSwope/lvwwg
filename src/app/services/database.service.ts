@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SelectItem, SelectItemGroup } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { MeetingsComponent } from '../meetings/meetings.component';
 import { ImageDetails } from '../models/image.model';
@@ -173,6 +174,63 @@ export class DatabaseService {
           {
             companyName: 'Rockler',
             url: 'www.rockler.com',
+          }
+        ]
+      }
+    ];
+
+    return of(links);
+  }
+
+  getNewsletters(): Observable<Array<SelectItemGroup>> {
+    const links: Array<SelectItemGroup> = [
+      { label: '2018',
+        value: '2018',
+        items: [
+          {
+            label: 'January - Open Forum Discussion',
+            value: '../../assets/pdf/jan2018.pdf',
+          },
+          {
+            label: 'February - Appreciation Letters',
+            value: '../../assets/pdf/feb2018.pdf',
+          },
+          {
+            label: 'March - Wooden Trains',
+            value: '../../assets/pdf/mar2018.pdf',
+          },
+          {
+            label: 'April - N.J. Woodworking Show Discussion & Thank You letter',
+            value: '../../assets/pdf/apr2018.pdf',
+          },
+          {
+            label: 'May - Convex Curve Cutter Demonstration',
+            value: '../../assets/pdf/may2018.pdf',
+          }
+        ]
+      },
+      { label: '2017',
+        value: '2017',
+        items: [
+          {
+            label: 'February - CNC Trivets by Gary Schnell',
+            value: '../../assets/pdf/feb2017.pdf',
+          },
+          {
+            label: 'April - Trip to Fab Lab',
+            value: '../../assets/pdf/apr2017.pdf',
+          },
+          {
+            label: 'June - Lou Supina Presentation',
+            value: '../../assets/pdf/jun2017.pdf',
+          },
+          {
+            label: 'October - Larissa Huff',
+            value: '../../assets/pdf/Oct2017.pdf',
+          },
+          {
+            label: 'December - Block Party',
+            value: '../../assets/pdf/Dec2017.pdf',
           }
         ]
       }

@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MeetingsComponent } from './meetings/meetings.component';
-import { NewletterComponent } from './newletter/newletter.component';
+import { NewsletterComponent } from './newletter/newletter.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { MembersMartComponent } from './members-mart/members-mart.component';
@@ -30,12 +30,14 @@ import { FriendsComponent } from './friends/friends.component';
 import { LinksComponent } from './links/links.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { InMemoryComponent } from './in-memory/in-memory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MeetingsComponent,
-    NewletterComponent,
+    NewsletterComponent,
     GalleryComponent,
     ProjectsComponent,
     MembersMartComponent,
@@ -43,7 +45,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     FriendsComponent,
     LinksComponent,
     HomeComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    InMemoryComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     CheckboxModule,
     InputTextareaModule,
     DropdownModule,
+    NgxExtendedPdfViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
