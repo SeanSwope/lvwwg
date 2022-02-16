@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
         // {label: 'Wood Deals', id: '107', icon: 'fas fa-comment-dollar' },
         // {label: 'Friends', id: '108', icon: 'fas fa-user-friends' },
         {label: 'Links', id: '109', icon: 'fas fa-info-circle' },
+        {label: 'About Us', id: '110', icon: 'far fa-envelope' },
         // {label: 'Contact Us', id: '110', icon: 'far fa-envelope' },
     ];
   }
@@ -62,6 +63,7 @@ export class AppComponent implements OnInit {
         navigationDetails.push('/links');
         break;
       case '110':
+        navigationDetails.push('/about-us');
       break;
     }
 

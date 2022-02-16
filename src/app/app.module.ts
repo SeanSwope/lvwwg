@@ -32,6 +32,7 @@ import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { InMemoryComponent } from './in-memory/in-memory.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { InMemoryComponent } from './in-memory/in-memory.component';
     LinksComponent,
     HomeComponent,
     ContactUsComponent,
-    InMemoryComponent
+    InMemoryComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
