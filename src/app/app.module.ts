@@ -16,6 +16,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { CarouselModule } from 'primeng/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,6 +70,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     CheckboxModule,
     InputTextareaModule,
     DropdownModule,
+    CarouselModule,
     NgxExtendedPdfViewerModule,
   ],
   providers: [],

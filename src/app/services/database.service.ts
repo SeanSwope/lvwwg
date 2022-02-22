@@ -55,74 +55,62 @@ export class DatabaseService {
   getImages(): Observable<Array<ImageDetails>> {
     const links: Array<ImageDetails> = [
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
         "alt": "Description for Image 1",
         "title": "Shriner's Hospital 2018"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0890.JPG",
-        "thumbnailImageSrc": "..../assets//images/2018-shriners-hospital/DSC_0890.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0890.JPG",
         "alt": "Description for Image 2",
         "title": "Shriner's Hospital 2018"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0886.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0886.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0886.JPG",
         "alt": "Description for Image 3",
         "title": "Title 3"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
         "alt": "Description for Image 4",
         "title": "Title 4"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
         "alt": "Description for Image 5",
         "title": "Title 5"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
         "alt": "Description for Image 6",
         "title": "Title 6"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
         "alt": "Description for Image 7",
         "title": "Title 7"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0879.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0879.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0879.JPG",
         "alt": "Description for Image 8",
         "title": "Title 8"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0880.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0880.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0880.JPG",
         "alt": "Description for Image 9",
         "title": "Title 9"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0881.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0881.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0881.JPG",
         "alt": "Description for Image 10",
         "title": "Title 10"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0882.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0882.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0882.JPG",
         "alt": "Description for Image 10",
         "title": "Title 10"
       },
       {
-        "previewImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0885.JPG",
-        "thumbnailImageSrc": "../../assets/images/2018-shriners-hospital/DSC_0885.JPG",
+        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0885.JPG",
         "alt": "Description for Image 11",
         "title": "Title 11"
       },

@@ -3,19 +3,18 @@
     <span>Gallery</span>
   </div>
   <div class="content-body">
-    <p-galleria
+    <p-carousel
       [value]="images"
-      [responsiveOptions]="responsiveOptions"
-      showCaption="false">
+      [responsiveOptions]="responsiveOptions">
 
       <ng-template pTemplate="item" let-item>
         <div class="gallery-item">
           <span class="item-title">
             {{item.title}}
           </span>
-          <img class="gallery-image" [src]="item.previewImageSrc" [alt]="item.alt" />
+          <img class="gallery-image" [src]="item.imageSource" [alt]="item.alt" />
         </div>
       </ng-template>
-  </p-galleria>
+  </p-carousel>
   </div>
 </div>

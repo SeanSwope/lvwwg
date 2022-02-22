@@ -1,12 +1,10 @@
 export class ImageDetails {
-  previewImageSrc: string;
-  thumbnailImageSrc: string;
+  imageSource: string;
   alt: string;
   title: string;
 
   constructor() {
-    this.previewImageSrc = '';
-    this.thumbnailImageSrc = '';
+    this.imageSource = '';
     this.alt = '';
     this.title = '';
   }
