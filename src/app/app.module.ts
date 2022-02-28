@@ -4,13 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
 
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { MenubarModule } from 'primeng/menubar';
-import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { GalleriaModule } from 'primeng/galleria';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -59,12 +56,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
     FontAwesomeModule,
     SplitButtonModule,
     MenuModule,
-    MenubarModule,
     TabMenuModule,
-    MegaMenuModule,
     ButtonModule,
     TableModule,
-    GalleriaModule,
     AccordionModule,
     InputTextModule,
     CheckboxModule,

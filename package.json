@@ -1,6 +1,7 @@
 {
   "name": "lvwwg",
   "version": "1.0.0",
+  "homepage": "https://seanswope.github.io/lvwwg/Pages/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --watch",
