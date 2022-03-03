@@ -54,6 +54,26 @@ export class DatabaseService {
 
   getImages(): Observable<Array<ImageDetails>> {
     const links: Array<ImageDetails> = [
+/*       {
+        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-2.jpg",
+        "alt": "Description for Image 1",
+        "title": "Bonsall Bat February 2022"
+      },
+      {
+        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-4.jpg",
+        "alt": "Description for Image 1",
+        "title": "Bonsall Bat February 2022"
+      },
+      {
+        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-5.jpg",
+        "alt": "Description for Image 1",
+        "title": "Bonsall Bat February 2022"
+      },
+      {
+        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-6.jpg",
+        "alt": "Description for Image 1",
+        "title": "Bonsall Bat February 2022"
+      }, */
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
         "alt": "Description for Image 1",
@@ -67,27 +87,27 @@ export class DatabaseService {
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0886.JPG",
         "alt": "Description for Image 3",
-        "title": "Title 3"
+        "title": "Shriner's Hospital 2018"
       },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
         "alt": "Description for Image 4",
-        "title": "Title 4"
+        "title": "Shriner's Hospital 2018"
       },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
         "alt": "Description for Image 5",
-        "title": "Title 5"
+        "title": "Shriner's Hospital 2018"
       },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
         "alt": "Description for Image 6",
-        "title": "Title 6"
+        "title": "Shriner's Hospital 2018"
       },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
         "alt": "Description for Image 7",
-        "title": "Title 7"
+        "title": "Shriner's Hospital 2018"
       },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0879.JPG",

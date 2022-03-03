@@ -21,8 +21,9 @@ export class ContactUsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subjectOptions.push({label: 'Feedback', value: 'feedback'});
-    this.subjectOptions.push({label: 'Report a bug', value: 'report-bug'});
-    this.subjectOptions.push({label: 'Feature request', value: 'Feature-request'});
+    this.subjectOptions.push({label: 'Report a Website Issue', value: 'report-bug'});
+    this.subjectOptions.push({label: 'Request Information', value: 'request-info'});
+    this.subjectOptions.push({label: 'New Link to Add', value: 'new-link'});
     this.selectedSubject = this.subjectOptions[0];
   }
 
