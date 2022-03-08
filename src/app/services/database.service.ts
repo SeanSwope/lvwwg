@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MeetingsComponent } from '../meetings/meetings.component';
 import { ImageDetails } from '../models/image.model';
 import { CategoryLinkDetails, LinkDetails } from '../models/link.model';
+import { MarketItem } from '../models/market-item.model';
 import { MeetingDetails } from '../models/meeting-info.model';
 
 @Injectable({
@@ -17,39 +18,32 @@ export class DatabaseService {
     const meetings = new Array<MeetingDetails>();
 
     const meeting1: MeetingDetails = {
-      dateTime: new Date('2022-05-27T22:30:00Z'),
+      dateTime: new Date('2022-03-15T22:30:00Z'),
       location: 'Woodcraft Store, Parkway Shopping Center',
       presenter: '',
-      topic: 'Open discussion'
+      topic: 'New website sneak peak'
     }
     meetings.push(meeting1);
 
     const meeting2: MeetingDetails = {
-      dateTime: new Date('2022-04-27T22:30:00Z'),
+      dateTime: new Date('2022-04-19T22:30:00Z'),
       location: 'Woodcraft Store, Parkway Shopping Center',
-      presenter: '',
-      topic: 'Open discussion'
+      presenter: 'Jonathan Geyer, PA Dept of Agriculture',
+      topic: 'Pennsylvania Hardwoods Development Council'
     }
     meetings.push(meeting2);
 
     const meeting3: MeetingDetails = {
-      dateTime: new Date('2022-03-27T22:30:00Z'),
+      dateTime: new Date('2022-05-17T22:30:00Z'),
       location: 'Woodcraft Store, Parkway Shopping Center',
       presenter: '',
-      topic: 'Open discussion'
+      topic: 'Making a Face Frame Cabinet'
     }
     meetings.push(meeting3);
 
-    const meeting4: MeetingDetails = {
-      dateTime: new Date('2022-02-27T23:30:00Z'),
-      location: 'Woodcraft Store, Parkway Shopping Center',
-      presenter: '',
-      topic: 'Open discussion'
-    }
-    meetings.push(meeting4);
-
-    const sortedMeetings = meetings.sort(this.sortByDateTime);
-    return of(sortedMeetings);
+    /* const sortedMeetings = meetings.sort(this.sortByDateTime);
+    return of(sortedMeetings); */
+    return of(meetings);
   }
 
   getImages(): Observable<Array<ImageDetails>> {
@@ -245,6 +239,39 @@ export class DatabaseService {
     ];
 
     return of(links);
+  }
+
+  getMarketItems(): Observable<Array<MarketItem>> {
+    const marketItems: Array<MarketItem> = [
+      {
+        postedDate: new Date('3/1/2022'),
+        postedBy: 'Tim Enot',
+        contactInfo: 'tim@enot.com',
+        name: 'SHARK SD110 CNC Machine',
+        description: 'Good condition. Only used a few times.',
+        price: 799.00,
+        image: '../../assets/market/SHARK SD110 CNC Machine.jpg'
+      },
+      {
+        postedDate: new Date('3/10/2022'),
+        postedBy: 'Sean Swope',
+        contactInfo: '123-456-7890',
+        name: 'RIKON 12" VS Benchtop Drill Press',
+        description: 'Fair condition.',
+        price: 100.00,
+        image: '../../assets/market/Rikon drill press.jpg'
+      },
+      {
+        postedDate: new Date('10/1/1972'),
+        postedBy: 'Mickey Mouse',
+        contactInfo: 'mickey@mickey.com',
+        name: 'Theme Park in Florida',
+        description: 'Used daily.',
+        price: 10500.00,
+      },
+    ];
+
+    return of(marketItems);
   }
 
   private sortByDateTime(a: MeetingDetails, b: MeetingDetails) {

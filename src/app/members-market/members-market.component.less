@@ -1,0 +1,85 @@
+@import '../common.less';
+
+:host ::ng-deep {
+  .product-name {
+      font-size: 1rem;
+      font-weight: 700;
+  }
+
+  .product-description {
+      margin: 0 0 1rem 0;
+  }
+
+  .product-grid-item {
+      margin: .5em;
+      border: 1px solid #dee2e6;
+
+      .product-grid-item-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .product-grid-item-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .product-grid-item-bottom-left {
+          span {
+            padding-bottom: 0;
+          }
+        }
+
+        .product-grid-item-bottom-right {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          span {
+            padding-bottom: 0;
+          }
+        }
+      }
+
+      img {
+          width: 75%;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          margin: 2rem 0;
+      }
+
+      .product-grid-item-content {
+          text-align: center;
+      }
+
+      .product-price {
+          font-size: 1rem;
+          font-weight: 500;
+      }
+
+      .product-date {
+        font-size: 1rem;
+        font-weight: 100;
+      }
+
+      .product-poster {
+        font-size: 1rem;
+        font-weight: normal;
+      }
+
+      .product-image {
+        width: 50%;
+      }
+  }
+}
+
+.card {
+  padding: 1rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+
+span {
+  padding-bottom: .5em;
+}

@@ -1,0 +1,83 @@
+@import '../common.less';
+
+.contents {
+  .content-body {
+    .content-signin {
+      display: flex;
+      flex-direction: row;
+
+      .left-side {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+
+        .header {
+          font-size: 1em;
+          font-weight: bold;
+        }
+
+        span {
+          padding-bottom: .5em;
+        }
+
+        input {
+          margin-bottom: .5em;
+        }
+
+       .button-row {
+         display: flex;
+         flex-direction: row-reverse;
+
+         p-button {
+           margin-right: .5em;
+         }
+        }
+      }
+
+      .right-side {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 0 1em;
+        width: 60%;
+
+        .header {
+          font-size: 1em;
+          font-weight: bold;
+        }
+
+        span:nth-child(1) {
+          padding-bottom: .5em;
+        }
+      }
+    }
+
+    .content-register {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      .header {
+        font-size: 1em;
+        font-weight: bold;
+        padding-bottom: 0;
+      }
+
+      span {
+        padding-bottom: .5em;
+      }
+
+      input {
+        margin-bottom: .5em;
+      }
+
+      .button-row {
+        display: flex;
+        flex-direction: row-reverse;
+
+        p-button {
+          margin-right: .5em;
+        }
+      }
+    }
+  }
+}

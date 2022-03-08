@@ -6,10 +6,11 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { HomeComponent } from './home/home.component';
 import { InMemoryComponent } from './in-memory/in-memory.component';
 import { LinksComponent } from './links/links.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { NewsletterComponent } from './newletter/newletter.component';
+import { MembersMarketComponent } from './members-market/members-market.component';
 
-// meetings
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'meetings', component: MeetingsComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'newsletter', component: NewsletterComponent },
   { path: 'in-memory', component: InMemoryComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'signin', component: SignInComponent },
+  { path: 'market', component: MembersMarketComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
  // { path: '**', component: PageNotFoundComponent }
 ];

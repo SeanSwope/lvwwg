@@ -14,6 +14,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { CarouselModule } from 'primeng/carousel';
+import { DataViewModule } from 'primeng/dataview';
+import { PasswordModule } from 'primeng/password';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +24,7 @@ import { MeetingsComponent } from './meetings/meetings.component';
 import { NewsletterComponent } from './newletter/newletter.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { MembersMartComponent } from './members-mart/members-mart.component';
+import { MembersMarketComponent } from './members-market/members-market.component';
 import { WoodDealsComponent } from './wood-deals/wood-deals.component';
 import { FriendsComponent } from './friends/friends.component';
 import { LinksComponent } from './links/links.component';
@@ -31,6 +33,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { InMemoryComponent } from './in-memory/in-memory.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +42,15 @@ import { AboutUsComponent } from './about-us/about-us.component';
     NewsletterComponent,
     GalleryComponent,
     ProjectsComponent,
-    MembersMartComponent,
+    MembersMarketComponent,
     WoodDealsComponent,
     FriendsComponent,
     LinksComponent,
     HomeComponent,
     ContactUsComponent,
     InMemoryComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     InputTextareaModule,
     DropdownModule,
     CarouselModule,
+    DataViewModule,
+    PasswordModule,
     NgxExtendedPdfViewerModule,
   ],
   providers: [],

@@ -1,0 +1,51 @@
+<div class="contents">
+  <div class="title-bar">
+    <span>{{title}}</span>
+  </div>
+  <div class="content-body">
+    <div *ngIf="displayMode === 'signin'" class="content-signin">
+      <div class="left-side">
+        <span class="header">Registered Members</span>
+        <span>If you have an account, sign in with your email address.</span>
+        <span>Email *</span>
+        <input type="text" pInputText [(ngModel)]="userName">
+        <span>Password *</span>
+        <input type="password" pInputText [(ngModel)]="password">
+        <div class="button-row">
+          <!-- <p-button label="Register" icon="pi pi-check" iconPos="left" (onClick)="onRegister()"></p-button> -->
+          <p-button label="Sign In" icon="pi pi-check" iconPos="left" (onClick)="onSignIn()"></p-button>
+        </div>
+        <span>* Required Field</span>
+      </div>
+      <div class="right-side">
+        <span class="header">New Members</span>
+        <span>Creating an account has many benefits:</span>
+        <ul>
+          <li>Access to member only areas</li>
+          <li>Updates on Guild activities</li>
+          <li>Much more.</li>
+        </ul>
+        <div class="button-row">
+          <p-button label="Create an Account" icon="pi pi-check" iconPos="left" (onClick)="onRegister()"></p-button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="displayMode === 'register'" class="content-register">
+      <span class="header">Personal Information</span>
+      <span>First Name *</span>
+      <input type="text" pInputText [(ngModel)]="firstName">
+      <span>Last Name *</span>
+      <input type="password" pInputText [(ngModel)]="lastName">
+
+      <span class="header">Sign-In Information</span>
+      <span>Email *</span>
+      <input type="text" pInputText [(ngModel)]="userName">
+      <span>Password *</span>
+      <p-password [(ngModel)]="password"></p-password>
+      <div class="button-row">
+        <p-button label="Create an Account" icon="pi pi-check" iconPos="left" (onClick)="onCreate()"></p-button>
+      </div>
+      <span>* Required Field</span>
+  </div>
+  </div>
+</div>

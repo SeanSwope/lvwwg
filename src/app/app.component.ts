@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
         {label: 'Newsletter', id: '103', icon: 'far fa-newspaper' },
         {label: 'Gallery', id: '104', icon: 'far fa-images' },
         {label: 'Projects', id: '105', icon: 'fas fa-tasks' },
-        {label: 'Members Mart', id: '106', icon: 'fas fa-store' },
+        {label: 'Members Market', id: '106', icon: 'fas fa-store' },
         // {label: 'Wood Deals', id: '107', icon: 'fas fa-comment-dollar' },
         // {label: 'Friends', id: '108', icon: 'fas fa-user-friends' },
         {label: 'Links', id: '109', icon: 'fas fa-info-circle' },
@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
       case '105':
       break;
       case '106':
+        navigationDetails.push('/market');
       break;
       case '107':
       break;

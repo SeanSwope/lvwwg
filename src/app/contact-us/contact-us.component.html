@@ -3,7 +3,7 @@
     <span>Contact Us</span>
   </div>
   <div class="content-body">
-    <span>We want to hear from you.</span>
+    <span>Feel free to contact us with your questions or comments. Send us a message using the form below.</span>
 
     <!-- Name -->
     <div class="input-group">
@@ -47,6 +47,9 @@
     </div>
 
     <!-- Send button -->
-    <p-button label="Send" icon="pi pi-send" (onClick)="onSend()"></p-button>
+    <div class="button-row">
+      <p-button label="Add Attachment" icon="pi pi-upload" (onClick)="onAddAttachment()"></p-button>
+      <p-button label="Send" icon="pi pi-send" (onClick)="onSend()"></p-button>
+    </div>
   </div>
 </div>
