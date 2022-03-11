@@ -16,6 +16,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CarouselModule } from 'primeng/carousel';
 import { DataViewModule } from 'primeng/dataview';
 import { PasswordModule } from 'primeng/password';
+import { CardModule } from 'primeng/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { NewsletterComponent } from './newletter/newletter.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { GiveBackComponent } from './give-back/give-back.component';
 import { MembersMarketComponent } from './members-market/members-market.component';
 import { WoodDealsComponent } from './wood-deals/wood-deals.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -34,6 +35,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { InMemoryComponent } from './in-memory/in-memory.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ShowcaseComponent } from './showcase/showcase.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MeetingsComponent,
     NewsletterComponent,
     GalleryComponent,
-    ProjectsComponent,
+    GiveBackComponent,
     MembersMarketComponent,
     WoodDealsComponent,
     FriendsComponent,
@@ -51,6 +53,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     InMemoryComponent,
     AboutUsComponent,
     SignInComponent,
+    ShowcaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     CarouselModule,
     DataViewModule,
     PasswordModule,
+    CardModule,
     NgxExtendedPdfViewerModule,
   ],
   providers: [],

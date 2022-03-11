@@ -10,6 +10,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { MeetingsComponent } from './meetings/meetings.component';
 import { NewsletterComponent } from './newletter/newletter.component';
 import { MembersMarketComponent } from './members-market/members-market.component';
+import { GiveBackComponent } from './give-back/give-back.component';
+import { ShowcaseComponent } from './showcase/showcase.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'market', component: MembersMarketComponent },
+  { path: 'give-back', component: GiveBackComponent },
+  { path: 'showcase', component: ShowcaseComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
  // { path: '**', component: PageNotFoundComponent }
 ];

@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
         {label: 'Meetings', id: '102', icon: 'far fa-handshake' },
         {label: 'Newsletter', id: '103', icon: 'far fa-newspaper' },
         {label: 'Gallery', id: '104', icon: 'far fa-images' },
-        {label: 'Projects', id: '105', icon: 'fas fa-tasks' },
+        {label: 'Give Back', id: '105', icon: 'fas fa-tasks' },
         {label: 'Members Market', id: '106', icon: 'fas fa-store' },
         // {label: 'Wood Deals', id: '107', icon: 'fas fa-comment-dollar' },
-        // {label: 'Friends', id: '108', icon: 'fas fa-user-friends' },
+        {label: 'Showcase', id: '108', icon: 'fas fa-users' },
         {label: 'Links', id: '109', icon: 'fas fa-info-circle' },
         {label: 'About Us', id: '110', icon: 'far fa-envelope' },
         // {label: 'Contact Us', id: '110', icon: 'far fa-envelope' },
@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
         navigationDetails.push('/gallery');
         break;
       case '105':
+        navigationDetails.push('/give-back');
       break;
       case '106':
         navigationDetails.push('/market');
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
       case '107':
       break;
       case '108':
+        navigationDetails.push('/showcase');
       break;
       case '109':
         navigationDetails.push('/links');

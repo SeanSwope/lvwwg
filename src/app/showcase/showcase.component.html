@@ -1,0 +1,23 @@
+<div class="contents">
+  <div class="title-bar">
+    <span>Showcasing the Pride of Our Guild</span>
+  </div>
+  <div class="content-body">
+    <div class="content-row">
+      <span>Like proud parents, we love to showcase the workmanship of our members, regardless
+        if they are a professional and amateur woodworker.</span>
+    </div>
+    <div class="content-row">
+      <div class="image-row">
+        <p-card *ngFor="let item of showcaseItems">
+          <ng-template pTemplate="header">
+            <div class="card-header">
+              {{item.name}}
+            </div>
+          </ng-template>
+          <img src="{{item.source}}">
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -48,7 +48,7 @@ export class DatabaseService {
 
   getImages(): Observable<Array<ImageDetails>> {
     const links: Array<ImageDetails> = [
-/*       {
+      {
         "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-2.jpg",
         "alt": "Description for Image 1",
         "title": "Bonsall Bat February 2022"
@@ -67,7 +67,7 @@ export class DatabaseService {
         "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-6.jpg",
         "alt": "Description for Image 1",
         "title": "Bonsall Bat February 2022"
-      }, */
+      },
       {
         "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
         "alt": "Description for Image 1",

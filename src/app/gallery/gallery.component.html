@@ -3,18 +3,21 @@
     <span>Gallery</span>
   </div>
   <div class="content-body">
-    <p-carousel
-      [value]="images"
-      [responsiveOptions]="responsiveOptions">
+    <div class="carousel-container p-col-12">
+      <p-carousel
+        [showIndicators]="false"
+        [value]="images"
+        [responsiveOptions]="responsiveOptions">
 
-      <ng-template pTemplate="item" let-item>
-        <div class="gallery-item">
-          <span class="item-title">
-            {{item.title}}
-          </span>
-          <img class="gallery-image" [src]="item.imageSource" [alt]="item.alt" />
-        </div>
-      </ng-template>
-  </p-carousel>
+        <ng-template pTemplate="item" let-item>
+          <div class="gallery-item">
+            <span class="item-title">
+              {{item.title}}
+            </span>
+            <img class="gallery-image" [src]="item.imageSource" [alt]="item.alt" />
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
   </div>
 </div>

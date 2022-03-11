@@ -1,16 +1,10 @@
+@import './common.less';
+
 :host {
   display: flex;
   flex-grow: 1;
-}
-
-:host ::ng-deep {
-  .p-button-text {
-    color: beige;
-  }
-
-  .p-button {
-    background-color: oldlace;
-  }
+  width: 100%;
+  height: 100%;
 }
 
 .contents {
@@ -29,6 +23,7 @@
     // background-color: sandybrown;
     background-image: url('../assets/wood-1.jpg');
     height: 6em;
+    width: 100%;
 
     .left-side {
       flex: 1 1 auto;
@@ -46,7 +41,7 @@
       span {
         font-size: 3em;
         padding: 0 0 0 .33em;
-        color: oldlace;  // rgb(251, 250, 250);
+        color: @header-color
       }
     }
 
@@ -58,7 +53,7 @@
       a {
         font-size: 1.1em;
         margin: 0 0 0 1em;
-        color: oldlace;  // rgb(251, 250, 250);
+        color: @header-color
       }
     }
   }
@@ -70,6 +65,7 @@
     align-content: stretch;
     align-items: stretch;
     height: 100%;
+    width: 100%;
 
     /* Image Location */
     background-image: url("../assets/background75.jpg");
@@ -84,18 +80,25 @@
     .left-sidebar {
       display: flex;
       flex-direction: column;
-      flex: 0 1 auto;
+      flex: 0 0 auto;
       align-self: auto;
-      // background-color: burlywood;
       width: 8em;
-      //border-right: 1.5px solid black;
-     }
+
+      button {
+        margin-top: .15em;
+        background-color:  @sidebar-button-background-color;
+      }
+    }
 
     .main-layout {
       display: flex;
       flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
       flex: 1 1 auto;
       align-self: auto;
+      height: 100%;
+      width: 80%;
     }
   }
 }

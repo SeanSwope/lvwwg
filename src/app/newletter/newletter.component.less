@@ -2,6 +2,8 @@
 
 :host ::ng-deep .p-button {
   margin: 1em 0 0 1em;
+  background-color: @button-background-color;
+  color: @button-color;
 }
 
 :host ::ng-deep .p-dropdown {
@@ -10,15 +12,15 @@
 }
 
 .contents {
+  .content-body {
+    .input-group {
+      margin: 1em 0 1em 0;
 
-  .input-group {
-    margin: 1em 0 1em 0;
-
-    .input-row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
+      .input-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
     }
   }
 }

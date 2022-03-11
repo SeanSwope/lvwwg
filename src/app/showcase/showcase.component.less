@@ -1,0 +1,44 @@
+@import "../common.less";
+
+:host ::ng-deep {
+  .p-card-body {
+    padding-top: 0;
+
+    .p-card-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+  }
+}
+
+.contents {
+  .content-body {
+    .content-row {
+      margin-bottom: 1em;
+
+      .image-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        p-card {
+          margin: 0 .125em 0 .125em;
+        }
+
+        .card-header {
+          text-align: center;
+          padding-top: .5em;
+          font-size: 1rem;
+          font-weight: 700;
+        }
+
+        img {
+          padding: .5em;
+          width: auto;
+          height: 300px;
+        }
+      }
+    }
+  }
+}

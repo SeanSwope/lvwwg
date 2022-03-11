@@ -9,15 +9,14 @@
       <span>Select a newsletter and press View</span>
       <div class="input-row">
         <p-dropdown
-          styleClass="width: full-width"
           [group]="true"
           [options]="newsletterOptions"
           [(ngModel)]="selectedNewsletter"
           placeholder="Newsletters">
 
           <ng-template let-group pTemplate="group">
-            <div class="flex align-items-center">
-                <span>{{group.label}}</span>
+            <div>
+              <span>{{group.label}}</span>
             </div>
           </ng-template>
         </p-dropdown>
