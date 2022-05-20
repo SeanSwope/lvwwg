@@ -1,0 +1,7 @@
+{
+  "getAllMeetings" : "SELECT [ID],[DATETIME],[LOCATION],[PRESENTER],[TOPIC] FROM [dbo].[MEETINGS] ORDER BY [DATETIME]",
+  "getMeetings" : "SELECT TOP(12) [ID],[DATETIME],[LOCATION],[PRESENTER],[TOPIC] FROM [dbo].[MEETINGS] ORDER BY [DATETIME]",
+  "createMeeting" : "INSERT INTO [dbo].[MEETINGS] ([ID],[DATETIME],[LOCATION],[PRESENTER],[TOPIC]) VALUES (NEWID(),@datetime,@location,@presenter,@topic)",
+  "deleteMeeting" : "DELETE FROM [dbo].[MEETINGS] WHERE [ID] = @id",
+  "updateMeeting" : "UPDATE [dbo].[MEETINGS] SET [DATETIME]=@dt,[LOCATION]=@location,[PRESENTER]=@presenter,[TOPIC]=@topic WHERE [ID]=@id"
+}

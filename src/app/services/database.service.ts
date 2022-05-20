@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SelectItem, SelectItemGroup } from 'primeng/api';
-import { Observable, of } from 'rxjs';
-import { MeetingsComponent } from '../meetings/meetings.component';
+import { map, Observable, of } from 'rxjs';
+import { DatabaseResult } from '../models/database-result.model';
+import { DonationDetails } from '../models/donation.model';
 import { ImageDetails } from '../models/image.model';
 import { CategoryLinkDetails, LinkDetails } from '../models/link.model';
 import { MarketItem } from '../models/market-item.model';
@@ -11,126 +13,133 @@ import { MeetingDetails } from '../models/meeting-info.model';
   providedIn: 'root'
 })
 export class DatabaseService {
+  apiURL = 'http://localhost:3000/api';
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  createMeeting(meeting: MeetingDetails): Observable<DatabaseResult> {
+    return this.http.post<DatabaseResult>(this.apiURL + '/meetings', meeting).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  updateMeeting(meeting: MeetingDetails): Observable<DatabaseResult> {
+    return this.http.put<DatabaseResult>(this.apiURL + `/meetings/${meeting.id}`, meeting).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  deleteMeeting(meeting: MeetingDetails): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/meetings/${meeting.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
 
   getMeetings(): Observable<Array<MeetingDetails>> {
-    const meetings = new Array<MeetingDetails>();
+    return this.http.get<Array<MeetingDetails>>(this.apiURL + '/meetings').pipe(
+      map(results => {
+        const dateResults: Array<MeetingDetails> = [];
+        results.forEach(mtg => {
+          mtg.dateTime = new Date(mtg.dateTime);
+          dateResults.push(mtg);
+        })
+        return dateResults;
+      })
+    )
+  }
 
-    const meeting1: MeetingDetails = {
-      dateTime: new Date('2022-03-15T22:30:00Z'),
-      location: 'Woodcraft Store, Parkway Shopping Center',
-      presenter: '',
-      topic: 'New website sneak peak'
-    }
-    meetings.push(meeting1);
-
-    const meeting2: MeetingDetails = {
-      dateTime: new Date('2022-04-19T22:30:00Z'),
-      location: 'Woodcraft Store, Parkway Shopping Center',
-      presenter: 'Jonathan Geyer, PA Dept of Agriculture',
-      topic: 'Pennsylvania Hardwoods Development Council'
-    }
-    meetings.push(meeting2);
-
-    const meeting3: MeetingDetails = {
-      dateTime: new Date('2022-05-17T22:30:00Z'),
-      location: 'Woodcraft Store, Parkway Shopping Center',
-      presenter: '',
-      topic: 'Making a Face Frame Cabinet'
-    }
-    meetings.push(meeting3);
-
-    /* const sortedMeetings = meetings.sort(this.sortByDateTime);
-    return of(sortedMeetings); */
-    return of(meetings);
+  getAllMeetings(): Observable<Array<MeetingDetails>> {
+    return this.http.get<Array<MeetingDetails>>(this.apiURL + '/meetings/bulk').pipe(
+      map(results => {
+        const dateResults: Array<MeetingDetails> = [];
+        results.forEach(mtg => {
+          mtg.dateTime = new Date(mtg.dateTime);
+          dateResults.push(mtg);
+        })
+        return dateResults;
+      })
+    )
   }
 
   getImages(): Observable<Array<ImageDetails>> {
-    const links: Array<ImageDetails> = [
+    const imageDetails: Array<ImageDetails> = [
       {
-        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-2.jpg",
-        "alt": "Description for Image 1",
-        "title": "Bonsall Bat February 2022"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-2.jpg",
+        alt: "Description for Image 1",
+        title: "Bonsall Bat",
+        subTitle: "February 2022"
       },
       {
-        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-4.jpg",
-        "alt": "Description for Image 1",
-        "title": "Bonsall Bat February 2022"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-4.jpg",
+        alt: "Description for Image 1",
+        title: "Bonsall Bat",
+        subTitle: "February 2022"
       },
       {
-        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-5.jpg",
-        "alt": "Description for Image 1",
-        "title": "Bonsall Bat February 2022"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-5.jpg",
+        alt: "Description for Image 1",
+        title: "Bonsall Bat",
+        subTitle: "February 2022"
       },
       {
-        "imageSource": "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-6.jpg",
-        "alt": "Description for Image 1",
-        "title": "Bonsall Bat February 2022"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/Feb2022-Bonsall-Bat/Bonsall-Bat-6.jpg",
+        alt: "Description for Image 1",
+        title: "Bonsall Bat",
+        subTitle: "February 2022"
       },
       {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
-        "alt": "Description for Image 1",
-        "title": "Shriner's Hospital 2018"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/2018-shriners-hospital/DSC_0892.JPG",
+        alt: "Description for Image 1",
+        title: "Shriner's Hospital",
+        subTitle: "2018"
       },
       {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0890.JPG",
-        "alt": "Description for Image 2",
-        "title": "Shriner's Hospital 2018"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
+        alt: "Description for Image 2",
+        title: "Shriner's Hospital",
+        subTitle: "2018"
       },
       {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0886.JPG",
-        "alt": "Description for Image 3",
-        "title": "Shriner's Hospital 2018"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
+        alt: "Description for Image 4",
+        title: "Shriner's Hospital",
+        subTitle: "2018"
       },
       {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0887.JPG",
-        "alt": "Description for Image 4",
-        "title": "Shriner's Hospital 2018"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
+        alt: "Description for Image 6",
+        title: "Shriner's Hospital",
+        subTitle: "2018"
       },
       {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0888.JPG",
-        "alt": "Description for Image 5",
-        "title": "Shriner's Hospital 2018"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0884.JPG",
-        "alt": "Description for Image 6",
-        "title": "Shriner's Hospital 2018"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
-        "alt": "Description for Image 7",
-        "title": "Shriner's Hospital 2018"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0879.JPG",
-        "alt": "Description for Image 8",
-        "title": "Title 8"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0880.JPG",
-        "alt": "Description for Image 9",
-        "title": "Title 9"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0881.JPG",
-        "alt": "Description for Image 10",
-        "title": "Title 10"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0882.JPG",
-        "alt": "Description for Image 10",
-        "title": "Title 10"
-      },
-      {
-        "imageSource": "../../assets/images/2018-shriners-hospital/DSC_0885.JPG",
-        "alt": "Description for Image 11",
-        "title": "Title 11"
+        errorCode: 0,
+        message: '',
+        imageSource: "../../assets/images/2018-shriners-hospital/DSC_0876.JPG",
+        alt: "Description for Image 7",
+        title: "Shriner's Hospital",
+        subTitle: "2018"
       },
     ];
 
-    return of(links);
+    return of(imageDetails);
   }
 
   getLinks(): Observable<Array<CategoryLinkDetails>> {
@@ -138,31 +147,37 @@ export class DatabaseService {
       { category: 'Wood Deals',
         linkDetails: [
           {
+            errorCode: 0,
+            message: '',
             companyName: 'Shady Lane Tree Farm',
             streetAddress: '5220 Shimerville Road',
             cityStateAddress: 'Emmaus, PA',
             contact: 'Louise & Mike Peters',
             phone: '610-965-5612',
-            message: 'Please call',
+            moreInfo: 'Please call',
             url: '',
           },
           {
+            errorCode: 0,
+            message: '',
             companyName: 'Fleetwood Lumber & Flooring',
             streetAddress: '27 Rapp Road',
             cityStateAddress: 'Fleetwood, PA',
             contact: 'Bill Burkert',
             phone: '610-944-8364',
-            message: 'Please call. 5% Member\'s discount',
+            moreInfo: 'Please call. 5% Member\'s discount',
             url: '',
           },
           {
+            errorCode: 0,
+            message: '',
             companyName: 'Woodcraft',
             streetAddress: 'Parkway Shopping Center',
             streetAddress2: '1534 Lehigh Street',
             cityStateAddress: 'Allentown, PA',
             contact: '',
             phone: '610-351-2966',
-            message: '',
+            moreInfo: '',
             url: 'www.woodcraft.com',
           }
         ]
@@ -170,12 +185,56 @@ export class DatabaseService {
       { category: 'Catalogs',
         linkDetails: [
           {
+            errorCode: 0,
+            message: '',
             companyName: 'Grizzly Industrial, Inc',
             url: 'www.grizzly.com',
           },
           {
+            errorCode: 0,
+            message: '',
             companyName: 'Rockler',
             url: 'www.rockler.com',
+          }
+        ]
+      },
+      { category: 'Other Clubs / Guilds / Associations',
+        linkDetails: [
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'Minnesota Woodworkers Guild',
+            url: 'www.mnwwg.org',
+          },
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'Northeastern Woodworkers Association',
+            url: 'woodworker.org',
+          },
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'South Florida Woodworking Guild',
+            url: 'http://www.sfwg.org/',
+          },
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'Greenville Woodworkers Guild',
+            url: 'www.greenvillewoodworkers.com/',
+          },
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'Northwest Woodworkers Association',
+            url: 'nwwoodworkers.org/',
+          },
+          {
+            errorCode: 0,
+            message: '',
+            companyName: 'Western Pennsylvania Woodworkers',
+            url: 'www.wpwoodworkers.org',
           }
         ]
       }
@@ -244,6 +303,8 @@ export class DatabaseService {
   getMarketItems(): Observable<Array<MarketItem>> {
     const marketItems: Array<MarketItem> = [
       {
+        errorCode: 0,
+        message: '',
         postedDate: new Date('3/1/2022'),
         postedBy: 'Tim Enot',
         contactInfo: 'tim@enot.com',
@@ -253,6 +314,8 @@ export class DatabaseService {
         image: '../../assets/market/SHARK SD110 CNC Machine.jpg'
       },
       {
+        errorCode: 0,
+        message: '',
         postedDate: new Date('3/10/2022'),
         postedBy: 'Sean Swope',
         contactInfo: '123-456-7890',
@@ -262,6 +325,8 @@ export class DatabaseService {
         image: '../../assets/market/Rikon drill press.jpg'
       },
       {
+        errorCode: 0,
+        message: '',
         postedDate: new Date('10/1/1972'),
         postedBy: 'Mickey Mouse',
         contactInfo: 'mickey@mickey.com',
@@ -274,6 +339,61 @@ export class DatabaseService {
     return of(marketItems);
   }
 
+  getDonations(): Observable<Array<DonationDetails>> {
+    const donations: Array<DonationDetails> = [
+      {
+        errorCode: 0,
+        message: '',
+        organizationName: 'Children\'s Hospital of Philadelphia',
+        donationYear: '2021',
+        blockSets: 21,
+        racecars: 26,
+        rockingHorses: 7,
+        trains: 13,
+        wands: 15,
+        misc: ''
+      },
+      {
+        errorCode: 0,
+        message: '',
+        organizationName: 'Lehigh Valley Health Network',
+        donationYear: '2021',
+        blockSets: 22,
+        racecars: 10,
+        rockingHorses: 10,
+        trains: 5,
+        wands: 9,
+        misc: ''
+      },
+      {
+        errorCode: 0,
+        message: '',
+        organizationName: 'St. Luke\'s University Health Network',
+        donationYear: '2021',
+        blockSets: 19,
+        racecars: 9,
+        rockingHorses: 4,
+        trains: 3,
+        wands: 5,
+        misc: ''
+      },
+      {
+        errorCode: 0,
+        message: '',
+        organizationName: 'Shriners Children\'s Hospial',
+        donationYear: '2021',
+        blockSets: 15,
+        racecars: 19,
+        rockingHorses: 8,
+        trains: 15,
+        wands: 7,
+        misc: ''
+      },
+    ];
+
+    return of(donations);
+  }
+
   private sortByDateTime(a: MeetingDetails, b: MeetingDetails) {
     if (a.dateTime < b.dateTime) {
         return 1;
@@ -282,5 +402,126 @@ export class DatabaseService {
         return -1;
     }
     return 0;
+  }
+
+  // **********************************************
+  // PrimeNG Test Stuff
+  // **********************************************
+
+  status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
+
+  productNames: string[] = [
+      "Bamboo Watch",
+      "Black Watch",
+      "Blue Band",
+      "Blue T-Shirt",
+      "Bracelet",
+      "Brown Purse",
+      "Chakra Bracelet",
+      "Galaxy Earrings",
+      "Game Controller",
+      "Gaming Set",
+      "Gold Phone Case",
+      "Green Earbuds",
+      "Green T-Shirt",
+      "Grey T-Shirt",
+      "Headphones",
+      "Light Green T-Shirt",
+      "Lime Band",
+      "Mini Speakers",
+      "Painted Phone Case",
+      "Pink Band",
+      "Pink Purse",
+      "Purple Band",
+      "Purple Gemstone Necklace",
+      "Purple T-Shirt",
+      "Shoes",
+      "Sneakers",
+      "Teal T-Shirt",
+      "Yellow Earbuds",
+      "Yoga Mat",
+      "Yoga Set",
+  ];
+
+/*   getProductsSmall() {
+      return this.http.get<any>('assets/products-small.json')
+      .toPromise()
+      .then(res => <Product[]>res.data)
+      .then(data => { return data; });
+  } */
+
+  getProducts() {
+    return of([]);
+/*      return this.http.get<any>('../../assets/products.json')
+      .toPromise()
+      .then(res => <Product[]>res.data)
+      .then(data => { return data; }); */
+  }
+
+/*   getProductsWithOrdersSmall() {
+      return this.http.get<any>('assets/products-orders-small.json')
+      .toPromise()
+      .then(res => <Product[]>res.data)
+      .then(data => { return data; });
+  } */
+
+  generatePrduct(): Product {
+      const product: Product =  {
+          id: this.generateId(),
+          name: this.generateName(),
+          description: "Product Description",
+          price: this.generatePrice(),
+          quantity: this.generateQuantity(),
+          category: "Product Category",
+          inventoryStatus: this.generateStatus(),
+          rating: this.generateRating()
+      };
+
+      product.image = product.name?.toLocaleLowerCase().split(/[ ,]+/).join('-')+".jpg";;
+      return product;
+  }
+
+  generateId() {
+      let text = "";
+      let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 5; i++) {
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+
+      return text;
+  }
+
+  generateName() {
+      return this.productNames[Math.floor(Math.random() * Math.floor(30))];
+  }
+
+  generatePrice() {
+      return Math.floor(Math.random() * Math.floor(299)+1);
+  }
+
+  generateQuantity() {
+      return Math.floor(Math.random() * Math.floor(75)+1);
+  }
+
+  generateStatus() {
+      return this.status[Math.floor(Math.random() * Math.floor(3))];
+  }
+
+  generateRating() {
+      return Math.floor(Math.random() * Math.floor(5)+1);
+  }
 }
+
+export interface Product {
+  id?:string;
+  code?:string;
+  name?:string;
+  description?:string;
+  price?:number;
+  quantity?:number;
+  inventoryStatus?:string;
+  category?:string;
+  image?:string;
+  rating?:number;
 }

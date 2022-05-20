@@ -5,7 +5,7 @@
   <div class="content-body">
     <div class="content-row">
       <span>Like proud parents, we love to showcase the workmanship of our members, regardless
-        if they are a professional and amateur woodworker.</span>
+        of whether they are a professional and amateur woodworker.</span>
     </div>
     <div class="content-row">
       <div class="image-row">
@@ -13,6 +13,9 @@
           <ng-template pTemplate="header">
             <div class="card-header">
               {{item.name}}
+            </div>
+            <div class="card-description">
+              {{item.description}}
             </div>
           </ng-template>
           <img src="{{item.source}}">

@@ -12,6 +12,7 @@ import { NewsletterComponent } from './newletter/newletter.component';
 import { MembersMarketComponent } from './members-market/members-market.component';
 import { GiveBackComponent } from './give-back/give-back.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
+import { AdminHomeComponent } from './admin/home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'market', component: MembersMarketComponent },
   { path: 'give-back', component: GiveBackComponent },
   { path: 'showcase', component: ShowcaseComponent },
+  { path: 'admin', component: AdminHomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
  // { path: '**', component: PageNotFoundComponent }
 ];

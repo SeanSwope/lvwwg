@@ -26,11 +26,10 @@ export class AppComponent implements OnInit {
         {label: 'Gallery', id: '104', icon: 'far fa-images' },
         {label: 'Give Back', id: '105', icon: 'fas fa-tasks' },
         {label: 'Members Market', id: '106', icon: 'fas fa-store' },
-        // {label: 'Wood Deals', id: '107', icon: 'fas fa-comment-dollar' },
         {label: 'Showcase', id: '108', icon: 'fas fa-users' },
         {label: 'Links', id: '109', icon: 'fas fa-info-circle' },
         {label: 'About Us', id: '110', icon: 'far fa-envelope' },
-        // {label: 'Contact Us', id: '110', icon: 'far fa-envelope' },
+        {label: 'Administration', id: '200', icon: 'far fa-envelope' },
     ];
   }
 
@@ -46,27 +45,30 @@ export class AppComponent implements OnInit {
         break;
       case '103':
         navigationDetails.push('/newsletter');
-      break;
+        break;
       case '104':
         navigationDetails.push('/gallery');
         break;
       case '105':
         navigationDetails.push('/give-back');
-      break;
+        break;
       case '106':
         navigationDetails.push('/market');
-      break;
+        break;
       case '107':
-      break;
+        break;
       case '108':
         navigationDetails.push('/showcase');
-      break;
+        break;
       case '109':
         navigationDetails.push('/links');
         break;
       case '110':
         navigationDetails.push('/about-us');
-      break;
+        break;
+      case '200':
+        navigationDetails.push('/admin');
+        break;
     }
 
     this.router.navigate(navigationDetails);

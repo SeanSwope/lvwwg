@@ -1,0 +1,89 @@
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newMeeting()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="meetings"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Meetings</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Presenter</th>
+        <th>Topic</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-meeting>
+      <tr>
+        <td>{{meeting.dateTime | date:'longDate'}}</td>
+        <td>{{meeting.dateTime | date:'shortTime'}}</td>
+        <td>{{meeting.presenter}}</td>
+        <td>{{meeting.topic}}</td>
+        <td>{{meeting.location}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMeeting(meeting)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteMeeting(meeting)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{meetings ? meetings.length : 0 }} meetings.
+      </div>
+    </ng-template>
+  </p-table>
+</div>>
+
+<p-dialog [(visible)]="meetingDialog" [style]="{width: '450px'}" header="Meeting Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="mtg-date">Date</label>
+      <p-calendar
+        id="mtg-date"
+        [(ngModel)]="currentMeetingDate"
+        dateFormat="MM dd yy">
+      </p-calendar>
+      <small class="p-invalid" *ngIf="submitted && !currentMeetingDate">Date & Time are required.</small>
+    </div>
+    <div class="p-field">
+      <label for="mtg-date">Time</label>
+      <p-calendar [(ngModel)]="currentMeetingTime" [timeOnly]="true" hourFormat="12"></p-calendar>
+      <small class="p-invalid" *ngIf="submitted && !meeting.dateTime">Date & Time are required.</small>
+    </div>
+    <div class="p-field">
+      <label for="mtg-presenter">Presenter</label>
+      <input id="mtg-presenter" type="text" pInputText [(ngModel)]="meeting.presenter" />
+    </div>
+    <div class="p-field">
+      <label for="mtg-topic">Topic</label>
+      <textarea id="mtg-topic" pInputTextarea [(ngModel)]="meeting.topic" required rows="3" cols="20"></textarea>
+    </div>
+    <div class="p-field">
+      <label for="mtg-location">Location</label>
+      <input id="mtg-location" type="text" pInputText [(ngModel)]="meeting.location" />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMeeting()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

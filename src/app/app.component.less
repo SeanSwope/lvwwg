@@ -20,7 +20,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    // background-color: sandybrown;
     background-image: url('../assets/wood-1.jpg');
     height: 6em;
     width: 100%;
@@ -29,13 +28,13 @@
       flex: 1 1 auto;
       display: flex;
       flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
 
       img {
         width: 5em;
         height: 5em;
         margin-left: 1.75em;
-       // transform: rotate(9deg);
       }
 
       span {
@@ -48,6 +47,7 @@
     .right-side {
       align-items: center;
       flex: 0 1 auto;
+      flex-wrap: wrap;
       padding: 0 1em 0 0;
 
       a {

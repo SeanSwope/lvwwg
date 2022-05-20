@@ -3,6 +3,9 @@
     <span>Gallery</span>
   </div>
   <div class="content-body">
+    <span>
+      Browse our gallery of recent Guild events.
+    </span>
     <div class="carousel-container p-col-12">
       <p-carousel
         [showIndicators]="false"
@@ -13,6 +16,9 @@
           <div class="gallery-item">
             <span class="item-title">
               {{item.title}}
+            </span>
+            <span class="item-subtitle">
+              {{item.subTitle}}
             </span>
             <img class="gallery-image" [src]="item.imageSource" [alt]="item.alt" />
           </div>

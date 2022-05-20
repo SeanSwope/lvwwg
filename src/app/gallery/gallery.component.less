@@ -1,8 +1,7 @@
 @import "../common.less";
 
 :host {
-  width: 80%;
-  height: 80%;
+  //height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,47 +10,25 @@
 :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next:enabled:hover {
   color: #343a40;
   border-color: transparent;
-  background: @button-background-color; // #88898a;
+  background: @button-background-color;
 }
 
 :host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev:enabled:hover {
   color: #343a40;
   border-color: transparent;
-  background: @button-background-color; // #88898a;
+  background: @button-background-color;
 }
 
 .contents {
-  //background-color: blueviolet;
   justify-content: center;
   align-items: stretch;
   height: 100%;
-  width: 75%;
+}
 
-/*   .content-body {
-    margin: 0 1em 1em 1em;
-    //background-color: yellow;
-    // height: 100%;
-    // width: 100%;
-
-    .carousel-container {
-      // height: 100%;
-      // width: 100%;
-        }
-    .p-element {
-      .p-carousel {
-        .p-carousel-content {
-          .p-carousel-container {
-            .p-carousel-items-content {
-              .p-carousel-items-container {
-                .p-carousel-item {
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  } */
+button {
+  span {
+    font-size: 1.25em;
+  }
 }
 
 .gallery-item {
@@ -60,7 +37,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: auto;
+    max-height: 600px;
 
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 1em;
@@ -68,6 +46,11 @@
 
   .item-title {
     font-size: 2em !important;
+    text-align: center;
+  }
+
+  .item-subtitle {
+    font-size: 1.5em !important;
     text-align: center;
   }
 }

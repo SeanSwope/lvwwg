@@ -3,24 +3,21 @@
     <span>Links</span>
   </div>
   <div class="content-body">
-    <span class="span-bottom-margin">Below are some links to other places of woodworking interest on the web.
-      If you have a site you'd like us to link to, send us the URL and we'll check it out.
-      The Lehigh Valley Woodworkers' Guild does not endorse any site by the presence of
-      its link on our page. They are here for the interested and curious. Links are
-      grouped in categories shown below. They are also not in any particular order.
-      If you have a problem following one of these links, please let us know.
-      The Links page is growing so stop back often.</span>
+    <span class="span-bottom-margin">
+      Below are some links to other places of woodworking interest on the web.
+      If you have a site you'd like us to link to, contact us with the URL and we'll review it.
+    </span>
 
-    <!-- <div *ngFor="let item of links" class="link-item">
-      <span class="company">{{item.companyName}}</span>
-      <span *ngIf="item.streetAddress">{{item.streetAddress}}</span>
-      <span *ngIf="item.streetAddress2">{{item.streetAddress2}}</span>
-      <span *ngIf="item.cityStateAddress">{{item.cityStateAddress}}</span>
-      <span *ngIf="item.contact">{{item.contact}}</span>
-      <span *ngIf="item.phone">{{item.phone}}</span>
-      <span *ngIf="item.message">{{item.message}}</span>
-      <span *ngIf="item.url">{{item.url}}</span>
-    </div> -->
+    <span class="span-bottom-margin">
+      The Lehigh Valley Woodworkers' Guild does not endorse any site by the presence of
+      its link on our page. They are here for the interested. Links are grouped in categories
+      and are not listed in any order.
+    </span>
+
+    <span class="span-bottom-margin">
+      If you have a problem following one of these links, please let us know.
+      The Links page is growing so stop back often.
+    </span>
 
     <p-accordion [multiple]="true">
       <p-accordionTab *ngFor="let item of links" header="{{item.category}}" [selected]="true">
@@ -32,7 +29,7 @@
             <span *ngIf="detailItem.cityStateAddress">{{detailItem.cityStateAddress}}</span>
             <span *ngIf="detailItem.contact">{{detailItem.contact}}</span>
             <span *ngIf="detailItem.phone">{{detailItem.phone}}</span>
-            <span *ngIf="detailItem.message">{{detailItem.message}}</span>
+            <span *ngIf="detailItem.moreInfo">{{detailItem.moreInfo}}</span>
             <a *ngIf="detailItem.url" href="http://{{detailItem.url}}" target="_blank">{{detailItem.url}}</a>
           </div>
         </div>

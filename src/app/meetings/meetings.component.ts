@@ -14,7 +14,6 @@ export class MeetingsComponent implements OnInit {
     { field: 'dateTime', header: 'Time' },
     { field: 'subject', header: 'Subject' },
     { field: 'presenter', header: 'Presenter' },
-    // { field: 'location', header: 'Location' }
   ];
 
   constructor(

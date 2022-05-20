@@ -25,6 +25,7 @@ export class ContactUsComponent implements OnInit {
     this.subjectOptions.push({label: 'Request Information', value: 'request-info'});
     this.subjectOptions.push({label: 'New Link to Add', value: 'new-link'});
     this.subjectOptions.push({label: 'New Members\' Market Item', value: 'new-market-item'});
+    this.subjectOptions.push({label: 'New Showcase Item to Display', value: 'new-showcase-item'});
     this.selectedSubject = this.subjectOptions[0];
   }
 
@@ -39,6 +40,6 @@ export class ContactUsComponent implements OnInit {
   }
 
   onAddAttachment() {
-    
+
   }
 }

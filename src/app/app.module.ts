@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
@@ -17,6 +18,12 @@ import { CarouselModule } from 'primeng/carousel';
 import { DataViewModule } from 'primeng/dataview';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TabViewModule } from 'primeng/tabview';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,8 +33,6 @@ import { NewsletterComponent } from './newletter/newletter.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { GiveBackComponent } from './give-back/give-back.component';
 import { MembersMarketComponent } from './members-market/members-market.component';
-import { WoodDealsComponent } from './wood-deals/wood-deals.component';
-import { FriendsComponent } from './friends/friends.component';
 import { LinksComponent } from './links/links.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -36,6 +41,14 @@ import { InMemoryComponent } from './in-memory/in-memory.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
+import { AdminNewslettersComponent } from './admin/newsletters/newsletters.component';
+import { AdminMarketComponent } from './admin/market/market.component';
+import { AdminUsersComponent } from './admin/users/users.component';
+import { AdminGalleryComponent } from './admin/gallery/gallery.component';
+import { AdminEmailComponent } from './admin/email/email.component';
+import { AdminHomeComponent } from './admin/home/home.component';
+import { AdminLinksComponent } from './admin/links/links.component';
+import { AdminMeetingsComponent } from './admin/meetings/meetings.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +58,6 @@ import { ShowcaseComponent } from './showcase/showcase.component';
     GalleryComponent,
     GiveBackComponent,
     MembersMarketComponent,
-    WoodDealsComponent,
-    FriendsComponent,
     LinksComponent,
     HomeComponent,
     ContactUsComponent,
@@ -54,12 +65,21 @@ import { ShowcaseComponent } from './showcase/showcase.component';
     AboutUsComponent,
     SignInComponent,
     ShowcaseComponent,
+    AdminHomeComponent,
+    AdminNewslettersComponent,
+    AdminMarketComponent,
+    AdminUsersComponent,
+    AdminGalleryComponent,
+    AdminEmailComponent,
+    AdminLinksComponent,
+    AdminMeetingsComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     FontAwesomeModule,
     SplitButtonModule,
     MenuModule,
@@ -75,6 +95,12 @@ import { ShowcaseComponent } from './showcase/showcase.component';
     DataViewModule,
     PasswordModule,
     CardModule,
+    ScrollPanelModule,
+    TabViewModule,
+    ToolbarModule,
+    ConfirmDialogModule,
+    DialogModule,
+    CalendarModule,
     NgxExtendedPdfViewerModule,
   ],
   providers: [],

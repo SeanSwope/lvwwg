@@ -4,8 +4,11 @@
   </div>
   <div class="content-body">
     <div class="content-row">
-      <span>One of our primary goals is to give back to the children of community.
-        The reason we do this can best be said by this letter we received from one of those kid's parent.</span>
+      <span>
+        One of our primary goals is to give back to the children of our community.
+        We strive to have a positive impact by putting smiles on those children’s faces.
+        We received the following letter from a parent of one of those kids.
+      </span>
     </div>
     <div class="testimonial">
       <div class="left-side">
@@ -20,13 +23,37 @@
       </div>
     </div>
     <div class="content-row">
-      <span>Here are some of the projects we donate our time and effort to.</span>
+      <span>Here are some of the projects we donate our time and effort to and the organizations who received them.</span>
       <div class="image-row">
         <img src="../../assets/give-back/train.jpg">
         <img src="../../assets/give-back/race-cars.jpg">
         <img src="../../assets/give-back/horse-and-car.jpg">
         <img src="../../assets/give-back/horse.jpg">
       </div>
+    </div>
+    <div class="content-row">
+      <table>
+        <tr class="header-summary" colspan="7">
+          <th class="header-summary" colspan="7">
+            Summary of 2021 Donations
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor="let col of columns" class="table-header" >
+            {{col.header}}
+          </th>
+        </tr>
+
+        <tr *ngFor="let item of donationInfo">
+          <td>{{item.organizationName}}</td>
+          <td class="table-cell">{{item.blockSets}}</td>
+          <td class="table-cell">{{item.racecars}}</td>
+          <td class="table-cell">{{item.rockingHorses}}</td>
+          <td class="table-cell">{{item.trains}}</td>
+          <td class="table-cell">{{item.wands}}</td>
+          <td class="table-cell">{{item.misc}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

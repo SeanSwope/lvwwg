@@ -2,6 +2,9 @@
 
 .contents {
   .content-body {
+    overflow-y: auto;
+    height: 600px;
+
     .content-row {
       margin-bottom: 1em;
 
@@ -9,12 +12,11 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
 
         img {
           padding: .5em;
           width: auto;
-          height: 250px;
+          height: 225px;
         }
       }
     }
@@ -23,11 +25,10 @@
       display: flex;
       flex-direction: row;
       margin-bottom: 1em;
-      
+
       .right-side {
         display: flex;
         flex-direction: column;
-        //width: 80%;
         font-style: italic;
 
         span {
@@ -42,7 +43,6 @@
       .left-side {
         display: flex;
         flex-direction: column;
-        //width: 20%;
         margin-right: .5em;
 
         img {
@@ -51,5 +51,31 @@
         }
       }
     }
+  }
+}
+
+table {
+  border: 1px solid @button-background-color;
+  border-collapse: collapse;
+
+  .header-summary {
+    text-align: center;
+    background-color: @sidebar-button-background-color;
+  }
+
+  th {
+    padding: 0 .25em 0 .25em;
+    border: 1px solid @button-background-color;
+    background-color: @sidebar-button-background-color;
+  }
+
+  td {
+    padding: 0 .25em 0 .25em;
+    border: 1px solid @button-background-color;
+  }
+
+  .table-cell {
+    text-align: center;
+    border: 1px solid @button-background-color;
   }
 }

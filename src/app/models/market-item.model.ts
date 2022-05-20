@@ -1,4 +1,6 @@
-export class MarketItem {
+import { DatabaseResult } from "./database-result.model";
+
+export class MarketItem extends DatabaseResult {
   postedDate: Date;
   postedBy: string;
   contactInfo: string;
@@ -8,6 +10,7 @@ export class MarketItem {
   image?: string;
 
   constructor() {
+    super();
     this.postedDate = new Date();
     this.postedBy = '';
     this.contactInfo = '';
