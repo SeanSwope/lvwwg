@@ -3,5 +3,10 @@
   "getMeetings" : "SELECT TOP(12) [ID],[DATETIME],[LOCATION],[PRESENTER],[TOPIC] FROM [dbo].[MEETINGS] ORDER BY [DATETIME]",
   "createMeeting" : "INSERT INTO [dbo].[MEETINGS] ([ID],[DATETIME],[LOCATION],[PRESENTER],[TOPIC]) VALUES (NEWID(),@datetime,@location,@presenter,@topic)",
   "deleteMeeting" : "DELETE FROM [dbo].[MEETINGS] WHERE [ID] = @id",
-  "updateMeeting" : "UPDATE [dbo].[MEETINGS] SET [DATETIME]=@dt,[LOCATION]=@location,[PRESENTER]=@presenter,[TOPIC]=@topic WHERE [ID]=@id"
+  "updateMeeting" : "UPDATE [dbo].[MEETINGS] SET [DATETIME]=@dt,[LOCATION]=@location,[PRESENTER]=@presenter,[TOPIC]=@topic WHERE [ID]=@id",
+
+  "getAllMembers" : "SELECT [ID],[FIRSTNAME],[LASTNAME],[EMAIL],[PASSWORD],[ADMIN] FROM [dbo].[MEMBERS] ORDER BY [LASTNAME],[FIRSTNAME]",
+  "createMember" : "INSERT INTO [dbo].[MEMBERS] ([ID],[FIRSTNAME],[LASTNAME],[EMAIL],[PASSWORD],[ADMIN]) VALUES (NEWID(),@firstname,@lastname,@email,@password,@admin)",
+  "deleteMember" : "DELETE FROM [dbo].[MEMBERS] WHERE [ID]=@id",
+  "updateMember" : "UPDATE [dbo].[MEMBERS] SET [FIRSTNAME]=@firstName,[LASTNAME]=@lastName,[EMAIL]=@email,[PASSWORD]=@password,[ADMIN]=@admin WHERE [ID]=@id"
 }

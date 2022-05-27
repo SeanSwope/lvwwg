@@ -1,0 +1,81 @@
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newMember()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="members"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Members</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E-Mail</th>
+        <th>Password</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-member>
+      <tr>
+        <td>{{member.firstName}}</td>
+        <td>{{member.lastName}}</td>
+        <td>{{member.email}}</td>
+        <td>{{member.password}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMember(member)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteMember(member)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{members ? members.length : 0 }} members.
+      </div>
+    </ng-template>
+  </p-table>
+</div>>
+
+<p-dialog [(visible)]="memberDialog" [style]="{width: '450px'}" header="Member Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+
+    <div class="p-field">
+      <label for="mbr-firstName">First Name</label>
+      <input id="mbr-firstName" type="text" pInputText [(ngModel)]="member.firstName" />
+    </div>
+    <div class="p-field">
+      <label for="mbr-lastName">Last Name</label>
+      <input id="mbr-lastName" type="text" pInputText [(ngModel)]="member.lastName" />
+    </div>
+    <div class="p-field">
+      <label for="mbr-email">E-Mail</label>
+      <input id="mbr-email" type="text" pInputText [(ngModel)]="member.email" />
+    </div>
+    <div class="p-field">
+      <label for="mbr-password">Password</label>
+      <input id="mbr-password" type="text" pInputText [(ngModel)]="member.password" />
+    </div>
+    <div class="p-field">
+      <p-checkbox label="Administrator" [(ngModel)]="member.admin" [binary]="true"></p-checkbox>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMember()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

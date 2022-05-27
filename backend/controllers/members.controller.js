@@ -1,3 +1,4 @@
+const helpers = require("../../backend/helpers");
 var sql = require("mssql");
 const queries = require('../queries/queries.json');
 
@@ -11,26 +12,30 @@ var config = {
   options: { encrypt: false },
 };
 
-exports.createMeeting = (req, res, next) => {
-  //sql.close();
+exports.createMember = (req, res, next) => {
   // connect to your database
+  console.log(req.body);
   sql.connect(config, (err) => {
     if (err) {
       console.log(err)
       res.status(500).json(err.message);
+      return;
     }
 
     // create Request object
     var request = new sql.Request();
 
     // Add parameter
-    request.input('datetime', sql.VarChar, req.body.dateTime);
-    request.input('location', sql.VarChar, req.body.location);
-    request.input('presenter', sql.VarChar, req.body.presenter);
-    request.input('topic', sql.VarChar, req.body.topic);
+    request.input('firstname', sql.VarChar, req.body.firstName);
+    request.input('lastname', sql.VarChar, req.body.lastName);
+    request.input('email', sql.VarChar, req.body.email);
+    request.input('password', sql.VarChar, req.body.password);
+    request.input('admin', sql.VarChar, helpers.BooleanToString(req.body.admin));
+
+    // INSERT INTO [dbo].[MEMBERS] ([ID],[FIRSTNAME],[LASTNAME],[EMAIL],[PASSWORD],[ADMIN]) VALUES (New@firstname,@lastname,@email,@password,@admin
 
     // query to the database and get the data
-    request.query(queries.createMeeting, (err, results) => {
+    request.query(queries.createMember, (err, results) => {
       if (err) {
         console.log(err)
         res.status(500).json(err.message);
@@ -46,46 +51,7 @@ exports.createMeeting = (req, res, next) => {
   });
 }
 
-exports.getMeetings = (req, res, next) => {
-  //sql.close();
-  // connect to your database
-  sql.connect(config, (err) => {
-    if (err) {
-      console.log(err)
-      res.status(500).json(err.message);
-    } else {
-      // create Request object
-      var request = new sql.Request();
-
-      // query to the database and get the data
-      request.query(queries.getMeetings, (err, results) => {
-        if (err) {
-          console.log(err)
-          res.status(500).json(err.message);
-        }
-
-        var data = [];
-        for (var rowIndex = 0; rowIndex < results.rowsAffected; rowIndex++) {
-          data.push({
-            id: results.recordset[rowIndex].ID,
-            dateTime: results.recordset[rowIndex].DATETIME,
-            location: results.recordset[rowIndex].LOCATION,
-            presenter: results.recordset[rowIndex].PRESENTER,
-            topic: results.recordset[rowIndex].TOPIC
-          });
-        }
-
-        sql.close();
-
-        // send data as a response
-        res.status(200).json(data);
-      });
-    }
-  });
-}
-
-exports.getMeetingsBulk = (req, res, next) => {
-  //sql.close();
+exports.getMembersBulk = (req, res, next) => {
   // connect to your database
   sql.connect(config, (err) => {
     if (err) {
@@ -98,7 +64,7 @@ exports.getMeetingsBulk = (req, res, next) => {
     var request = new sql.Request();
 
     // query to the database and get the data
-    request.query(queries.getAllMeetings, (err, results) => {
+    request.query(queries.getAllMembers, (err, results) => {
       if (err) {
         console.log(err)
         res.status(500).json(err.message);
@@ -109,10 +75,11 @@ exports.getMeetingsBulk = (req, res, next) => {
       for (var rowIndex = 0; rowIndex < results.rowsAffected; rowIndex++) {
         data.push({
           id: results.recordset[rowIndex].ID,
-          dateTime: results.recordset[rowIndex].DATETIME,
-          location: results.recordset[rowIndex].LOCATION,
-          presenter: results.recordset[rowIndex].PRESENTER,
-          topic: results.recordset[rowIndex].TOPIC
+          firstName: results.recordset[rowIndex].FIRSTNAME,
+          lastName: results.recordset[rowIndex].LASTNAME,
+          email: results.recordset[rowIndex].EMAIL,
+          password: results.recordset[rowIndex].PASSWORD,
+          admin: helpers.StringToBoolean(results.recordset[rowIndex].ADMIN)
         });
       }
 
@@ -124,10 +91,9 @@ exports.getMeetingsBulk = (req, res, next) => {
   });
 }
 
-exports.updateMeeting = (req, res, next) => {
-  console.log('UpdateMeeting');
+exports.updateMember = (req, res, next) => {
+  console.log('UpdateMember');
   console.log(req.body);
-  //sql.close();
   // connect to your database
   sql.connect(config, (err) => {
     if (err) {
@@ -141,13 +107,14 @@ exports.updateMeeting = (req, res, next) => {
 
     // Add parameter
     request.input('id', sql.VarChar, req.body.id);
-    request.input('dt', sql.VarChar, req.body.dateTime);
-    request.input('location', sql.VarChar, req.body.location);
-    request.input('presenter', sql.VarChar, req.body.presenter);
-    request.input('topic', sql.VarChar, req.body.topic);
+    request.input('firstname', sql.VarChar, req.body.firstName);
+    request.input('lastname', sql.VarChar, req.body.lastName);
+    request.input('email', sql.VarChar, req.body.email);
+    request.input('password', sql.VarChar, req.body.password);
+    request.input('admin', sql.VarChar, helpers.BooleanToString(req.body.admin));
 
     // query to the database and get the data
-    request.query(queries.updateMeeting, (err, results) => {
+    request.query(queries.updateMember, (err, results) => {
       console.log(err);
       if (err) {
         console.log(err)
@@ -165,10 +132,9 @@ exports.updateMeeting = (req, res, next) => {
   });
 }
 
-exports.deleteMeeting = (req, res, next) => {
-  console.log('deleteMeeting');
+exports.deleteMember = (req, res, next) => {
+  console.log('deleteMember');
   console.log(req.params.id);
-  //sql.close();
   // connect to your database
   sql.connect(config, (err) => {
     if (err) {
@@ -184,7 +150,7 @@ exports.deleteMeeting = (req, res, next) => {
     request.input('id', sql.VarChar, req.params.id);
 
     // query to the database and get the data
-    request.query(queries.deleteMeeting, (err, results) => {
+    request.query(queries.deleteMember, (err, results) => {
       if (err) {
         console.log(err)
         res.status(500).json(err.message);

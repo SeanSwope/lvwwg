@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //var indexRouter = require('./routes/meetings');
+var membersRouter = require('./routes/members');
 var meetingsRouter = require('./routes/meetings');
 // var newslettersRouter = require('./routes/newsletters');
 // var imagesRouter = require('./routes/images');
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 });
 
 // app.use('/api/', indexRouter);
+app.use('/api/members', membersRouter);
 app.use('/api/meetings', meetingsRouter);
 // app.use('/api/newsletters', newslettersRouter);
 // app.use('/api/images', imagesRouter);

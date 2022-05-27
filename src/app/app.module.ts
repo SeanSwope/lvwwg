@@ -43,7 +43,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ShowcaseComponent } from './showcase/showcase.component';
 import { AdminNewslettersComponent } from './admin/newsletters/newsletters.component';
 import { AdminMarketComponent } from './admin/market/market.component';
-import { AdminUsersComponent } from './admin/users/users.component';
+import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminGalleryComponent } from './admin/gallery/gallery.component';
 import { AdminEmailComponent } from './admin/email/email.component';
 import { AdminHomeComponent } from './admin/home/home.component';
@@ -68,7 +68,7 @@ import { AdminMeetingsComponent } from './admin/meetings/meetings.component';
     AdminHomeComponent,
     AdminNewslettersComponent,
     AdminMarketComponent,
-    AdminUsersComponent,
+    AdminMembersComponent,
     AdminGalleryComponent,
     AdminEmailComponent,
     AdminLinksComponent,

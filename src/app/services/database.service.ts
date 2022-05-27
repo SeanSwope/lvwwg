@@ -8,6 +8,7 @@ import { ImageDetails } from '../models/image.model';
 import { CategoryLinkDetails, LinkDetails } from '../models/link.model';
 import { MarketItem } from '../models/market-item.model';
 import { MeetingDetails } from '../models/meeting-info.model';
+import { Member } from '../models/member.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,30 @@ export class DatabaseService {
   constructor(
     private http: HttpClient,
   ) { }
+
+  createMember(member: Member): Observable<DatabaseResult> {
+    return this.http.post<DatabaseResult>(this.apiURL + '/members', member).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  updateMember(member: Member): Observable<DatabaseResult> {
+    return this.http.put<DatabaseResult>(this.apiURL + `/members/${member.id}`, member).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  deleteMember(member: Member): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/members/${member.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  getAllMembers(): Observable<Array<Member>> {
+    return this.http.get<Array<Member>>(this.apiURL + '/members/bulk').pipe(
+      map(results => results as Array<Member>)
+    );
+  }
 
   createMeeting(meeting: MeetingDetails): Observable<DatabaseResult> {
     return this.http.post<DatabaseResult>(this.apiURL + '/meetings', meeting).pipe(
