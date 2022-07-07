@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DonationDetails } from '../models/donation.model';
+import { DonationDetail } from '../models/donation.model';
 import { DatabaseService } from '../services/database.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['./give-back.component.less']
 })
 export class GiveBackComponent implements OnInit {
-  donationInfo: Array<DonationDetails> = [];
+  donationInfo: Array<DonationDetail> = [];
   columns: Array<{field: string, header: string}> = [
     { field: 'organization', header: 'Organization' },
     { field: 'blockSets', header: 'Block Sets' },
@@ -24,7 +24,7 @@ export class GiveBackComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.databaseService.getDonations().subscribe(donations => {
+    this.databaseService.getAllDonations().subscribe(donations => {
       this.donationInfo = donations!;
     });
   }

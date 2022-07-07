@@ -1,1 +1,109 @@
-<p>gallery works!</p>
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newImage()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="images"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Images</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Source</th>
+        <th>Alternate Text</th>
+        <th>Title</th>
+        <th>Sub-Title</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-image>
+      <tr>
+        <td>{{image.imageSource}}</td>
+        <td>{{image.alt}}</td>
+        <td>{{image.title}}</td>
+        <td>{{image.subTitle}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editImage(image)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteImage(image)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{images ? images.length : 0 }} images.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="imageDialog" [style]="{width: '450px'}" header="Image Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="image-name">Source</label>
+      <app-file-upload
+        [defaultFilename]="image.imageSource"
+        [(selectedFile)]="selectedImage">
+      </app-file-upload>
+<!--       <div class="content-row">
+        <input id="image-name" type="text" pInputText [(ngModel)]="image.imageSource" />
+        <p-fileUpload
+          mode="basic"
+          name="images"
+          url="http://localhost:3000/api/images/upload"
+          (onUpload)="onUpload($event)"
+          (onError)="onError($event)"
+          [auto]="true"
+          chooseLabel="Browse">
+        </p-fileUpload>
+      </div> -->
+    </div>
+    <div class="p-field">
+      <label for="image-addr1">Alternate Text</label>
+      <input id="image-addr1" type="text" pInputText [(ngModel)]="image.alt" />
+    </div>
+    <div class="p-field">
+      <label for="image-addr2">Title</label>
+      <input id="image-addr2" type="text" pInputText [(ngModel)]="image.title" />
+    </div>
+    <div class="p-field">
+      <label for="image-city">Sub-Title</label>
+      <input id="image-city" type="text" pInputText [(ngModel)]="image.subTitle" />
+    </div>
+<!--     <div class="p-field">
+      <p-fileUpload
+        name="images"
+        url="http://localhost:3000/api/images/upload"
+        (onUpload)="onUpload($event)">
+
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+      </ng-template>
+      </p-fileUpload>
+
+    </div>
+ -->
+
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveImage()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-messages></p-messages>
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryLinkDetails, LinkDetails } from '../models/link.model';
+import { CategoryLinkDetails, LinkDetail } from '../models/link.model';
 import { DatabaseService } from '../services/database.service';
 
 @Component({
@@ -16,8 +16,8 @@ export class LinksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.databaseService.getLinks().subscribe(links => {
+/*    this.databaseService.getLinks().subscribe(links => {
       this.links = links!;
-    });
+    }); */
   }
 }

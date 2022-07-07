@@ -1,6 +1,7 @@
-import { DatabaseResult } from "./database-result.model";
+import { DatabaseHelper, DatabaseResult } from "./database-result.model";
 
-export class LinkDetails extends DatabaseResult {
+export class LinkDetail extends DatabaseResult {
+  id: string;
   companyName: string;
   streetAddress?: string;
   streetAddress2?: string;
@@ -9,9 +10,11 @@ export class LinkDetails extends DatabaseResult {
   phone?: string;
   moreInfo?: string;
   url?: string;
+  category: string;
 
   constructor() {
     super();
+    this.id = DatabaseHelper.emptyGuid;
     this.companyName = '';
     this.streetAddress = '';
     this.streetAddress2 = '';
@@ -20,12 +23,13 @@ export class LinkDetails extends DatabaseResult {
     this.phone = '';
     this.moreInfo = '';
     this.url = '';
+    this.category = '';
   }
 }
 
 export class CategoryLinkDetails {
   category: string;
-  linkDetails: Array<LinkDetails>;
+  linkDetails: Array<LinkDetail>;
 
   constructor() {
     this.category = '';

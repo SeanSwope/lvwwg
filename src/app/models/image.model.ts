@@ -1,6 +1,7 @@
-import { DatabaseResult } from "./database-result.model";
+import { DatabaseHelper, DatabaseResult } from "./database-result.model";
 
-export class ImageDetails extends DatabaseResult {
+export class ImageDetail extends DatabaseResult {
+  id: string;
   imageSource: string;
   alt: string;
   title: string;
@@ -8,6 +9,7 @@ export class ImageDetails extends DatabaseResult {
 
   constructor() {
     super();
+    this.id = DatabaseHelper.emptyGuid;
     this.imageSource = '';
     this.alt = '';
     this.title = '';

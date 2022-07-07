@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SelectItem, SelectItemGroup } from 'primeng/api';
-import { map, Observable, of } from 'rxjs';
+import { map, switchMap, Observable, of } from 'rxjs';
 import { DatabaseResult } from '../models/database-result.model';
-import { DonationDetails } from '../models/donation.model';
-import { ImageDetails } from '../models/image.model';
-import { CategoryLinkDetails, LinkDetails } from '../models/link.model';
+import { DonationDetail } from '../models/donation.model';
+import { ImageDetail } from '../models/image.model';
+import { CategoryLinkDetails, LinkDetail } from '../models/link.model';
 import { MarketItem } from '../models/market-item.model';
 import { MeetingDetails } from '../models/meeting-info.model';
 import { Member } from '../models/member.model';
@@ -20,6 +20,158 @@ export class DatabaseService {
     private http: HttpClient,
   ) { }
 
+  /* //upload file method
+  uploadFile(file: any) {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    //append any other key here if required
+    return this.http.post(`<upload URL>`, formData);
+  }
+
+  //delete file method
+  deleteAttachment(deleteList: Array<any>) {
+    if (deleteList.length) {
+      //for multiple delete do foreach here
+      const body = { filename: deleteList[0].uploadname };
+      const options = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'blob'
+      };
+      return this.http.post(`<delete file api>`, body, options);
+    }
+  } */
+
+  // **********************
+  // Images
+  // **********************
+  createImage(imageDetail: ImageDetail, image: File): Observable<DatabaseResult> {
+    console.log('createImage');
+    const formData = new FormData();
+    formData.append("file", image);
+
+    return this.http.post<DatabaseResult>(this.apiURL + '/images/upload', formData).pipe(
+      switchMap(uploadResult => {
+        console.log(uploadResult);
+        return this.http.post<DatabaseResult>(this.apiURL + '/images', imageDetail).pipe(
+          map(result => {
+            if (result.errorCode === 0 && uploadResult.errorCode !== 0) {
+              result = uploadResult;
+            }
+            return result;
+          })
+        );
+      })
+    );
+  }
+
+  updateImage(imageDetail: ImageDetail, image: File): Observable<DatabaseResult> {
+    console.log('updateImage');
+    const formData = new FormData();
+    formData.append("file", image);
+
+    return this.http.post<DatabaseResult>(this.apiURL + '/images/upload', formData).pipe(
+      switchMap(uploadResult => {
+        console.log(uploadResult);
+        return this.http.put<DatabaseResult>(this.apiURL + `/images/${imageDetail.id}`, imageDetail).pipe(
+          map(result => {
+            if (result.errorCode === 0 && uploadResult.errorCode !== 0) {
+              // Don't report same file as an error
+              if (uploadResult.errorCode === 1 && image.name !== imageDetail.imageSource) {
+                result = uploadResult;
+              }
+            }
+            return result;
+          })
+        )
+      })
+    );
+  }
+
+  deleteImage(imageDetail: ImageDetail): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/images/${imageDetail.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  getAllImages(): Observable<Array<ImageDetail>> {
+    return this.http.get<Array<ImageDetail>>(this.apiURL + '/images/bulk').pipe(
+      map(results => results as Array<ImageDetail>)
+    );
+  }
+
+  // **********************
+  // Categories
+  // **********************
+  getAllCategories(): Observable<Array<{id: string, name: string}>> {
+    return this.http.get<Array<{id: string, name: string}>>(this.apiURL + '/links/categories').pipe(
+      map(results => results as Array<{id: string, name: string}>)
+    );
+  }
+
+  // **********************
+  // Links
+  // **********************
+  createLink(link: LinkDetail): Observable<DatabaseResult> {
+    return this.http.post<DatabaseResult>(this.apiURL + '/links', link).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  updateLink(link: LinkDetail): Observable<DatabaseResult> {
+    return this.http.put<DatabaseResult>(this.apiURL + `/links/${link.id}`, link).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  deleteLink(link: LinkDetail): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/links/${link.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  getAllLinks(): Observable<Array<LinkDetail>> {
+    return this.http.get<Array<LinkDetail>>(this.apiURL + '/links/bulk').pipe(
+      map(results => results as Array<LinkDetail>)
+    );
+  }
+
+  // **********************
+  // Donations
+  // **********************
+  createDonation(donation: DonationDetail): Observable<DatabaseResult> {
+    return this.http.post<DatabaseResult>(this.apiURL + '/donations', donation).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  updateDonation(donation: DonationDetail): Observable<DatabaseResult> {
+    return this.http.put<DatabaseResult>(this.apiURL + `/donations/${donation.id}`, donation).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  deleteDonation(donation: DonationDetail): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/donations/${donation.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  getAllDonations(): Observable<Array<DonationDetail>> {
+    return this.http.get<Array<DonationDetail>>(this.apiURL + '/donations/bulk').pipe(
+      map(results => {
+        const dateResults: Array<DonationDetail> = [];
+        results.forEach(dntn => {
+          dntn.donationYear = new Date(dntn.donationYear);
+          dateResults.push(dntn);
+        })
+        return dateResults;
+      })
+    );
+  }
+
+  // **********************
+  // Members
+  // **********************
   createMember(member: Member): Observable<DatabaseResult> {
     return this.http.post<DatabaseResult>(this.apiURL + '/members', member).pipe(
       map(result => result as DatabaseResult)
@@ -44,6 +196,9 @@ export class DatabaseService {
     );
   }
 
+  // **********************
+  // Meetings
+  // **********************
   createMeeting(meeting: MeetingDetails): Observable<DatabaseResult> {
     return this.http.post<DatabaseResult>(this.apiURL + '/meetings', meeting).pipe(
       map(result => result as DatabaseResult)
@@ -88,8 +243,9 @@ export class DatabaseService {
     )
   }
 
-  getImages(): Observable<Array<ImageDetails>> {
-    const imageDetails: Array<ImageDetails> = [
+  /*
+  getImages(): Observable<Array<ImageDetail>> {
+    const imageDetails: Array<ImageDetail> = [
       {
         errorCode: 0,
         message: '',
@@ -166,7 +322,9 @@ export class DatabaseService {
 
     return of(imageDetails);
   }
+  */
 
+  /*
   getLinks(): Observable<Array<CategoryLinkDetails>> {
     const links: Array<CategoryLinkDetails> = [
       { category: 'Wood Deals',
@@ -267,6 +425,7 @@ export class DatabaseService {
 
     return of(links);
   }
+  */
 
   getNewsletters(): Observable<Array<SelectItemGroup>> {
     const links: Array<SelectItemGroup> = [
@@ -364,61 +523,6 @@ export class DatabaseService {
     return of(marketItems);
   }
 
-  getDonations(): Observable<Array<DonationDetails>> {
-    const donations: Array<DonationDetails> = [
-      {
-        errorCode: 0,
-        message: '',
-        organizationName: 'Children\'s Hospital of Philadelphia',
-        donationYear: '2021',
-        blockSets: 21,
-        racecars: 26,
-        rockingHorses: 7,
-        trains: 13,
-        wands: 15,
-        misc: ''
-      },
-      {
-        errorCode: 0,
-        message: '',
-        organizationName: 'Lehigh Valley Health Network',
-        donationYear: '2021',
-        blockSets: 22,
-        racecars: 10,
-        rockingHorses: 10,
-        trains: 5,
-        wands: 9,
-        misc: ''
-      },
-      {
-        errorCode: 0,
-        message: '',
-        organizationName: 'St. Luke\'s University Health Network',
-        donationYear: '2021',
-        blockSets: 19,
-        racecars: 9,
-        rockingHorses: 4,
-        trains: 3,
-        wands: 5,
-        misc: ''
-      },
-      {
-        errorCode: 0,
-        message: '',
-        organizationName: 'Shriners Children\'s Hospial',
-        donationYear: '2021',
-        blockSets: 15,
-        racecars: 19,
-        rockingHorses: 8,
-        trains: 15,
-        wands: 7,
-        misc: ''
-      },
-    ];
-
-    return of(donations);
-  }
-
   private sortByDateTime(a: MeetingDetails, b: MeetingDetails) {
     if (a.dateTime < b.dateTime) {
         return 1;
@@ -428,125 +532,4 @@ export class DatabaseService {
     }
     return 0;
   }
-
-  // **********************************************
-  // PrimeNG Test Stuff
-  // **********************************************
-
-  status: string[] = ['OUTOFSTOCK', 'INSTOCK', 'LOWSTOCK'];
-
-  productNames: string[] = [
-      "Bamboo Watch",
-      "Black Watch",
-      "Blue Band",
-      "Blue T-Shirt",
-      "Bracelet",
-      "Brown Purse",
-      "Chakra Bracelet",
-      "Galaxy Earrings",
-      "Game Controller",
-      "Gaming Set",
-      "Gold Phone Case",
-      "Green Earbuds",
-      "Green T-Shirt",
-      "Grey T-Shirt",
-      "Headphones",
-      "Light Green T-Shirt",
-      "Lime Band",
-      "Mini Speakers",
-      "Painted Phone Case",
-      "Pink Band",
-      "Pink Purse",
-      "Purple Band",
-      "Purple Gemstone Necklace",
-      "Purple T-Shirt",
-      "Shoes",
-      "Sneakers",
-      "Teal T-Shirt",
-      "Yellow Earbuds",
-      "Yoga Mat",
-      "Yoga Set",
-  ];
-
-/*   getProductsSmall() {
-      return this.http.get<any>('assets/products-small.json')
-      .toPromise()
-      .then(res => <Product[]>res.data)
-      .then(data => { return data; });
-  } */
-
-  getProducts() {
-    return of([]);
-/*      return this.http.get<any>('../../assets/products.json')
-      .toPromise()
-      .then(res => <Product[]>res.data)
-      .then(data => { return data; }); */
-  }
-
-/*   getProductsWithOrdersSmall() {
-      return this.http.get<any>('assets/products-orders-small.json')
-      .toPromise()
-      .then(res => <Product[]>res.data)
-      .then(data => { return data; });
-  } */
-
-  generatePrduct(): Product {
-      const product: Product =  {
-          id: this.generateId(),
-          name: this.generateName(),
-          description: "Product Description",
-          price: this.generatePrice(),
-          quantity: this.generateQuantity(),
-          category: "Product Category",
-          inventoryStatus: this.generateStatus(),
-          rating: this.generateRating()
-      };
-
-      product.image = product.name?.toLocaleLowerCase().split(/[ ,]+/).join('-')+".jpg";;
-      return product;
-  }
-
-  generateId() {
-      let text = "";
-      let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-      for (var i = 0; i < 5; i++) {
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-      }
-
-      return text;
-  }
-
-  generateName() {
-      return this.productNames[Math.floor(Math.random() * Math.floor(30))];
-  }
-
-  generatePrice() {
-      return Math.floor(Math.random() * Math.floor(299)+1);
-  }
-
-  generateQuantity() {
-      return Math.floor(Math.random() * Math.floor(75)+1);
-  }
-
-  generateStatus() {
-      return this.status[Math.floor(Math.random() * Math.floor(3))];
-  }
-
-  generateRating() {
-      return Math.floor(Math.random() * Math.floor(5)+1);
-  }
-}
-
-export interface Product {
-  id?:string;
-  code?:string;
-  name?:string;
-  description?:string;
-  price?:number;
-  quantity?:number;
-  inventoryStatus?:string;
-  category?:string;
-  image?:string;
-  rating?:number;
 }

@@ -1,6 +1,6 @@
-import { DatabaseHelper } from "./database-result.model";
+import { DatabaseHelper, DatabaseResult } from "./database-result.model";
 
-export class Member {
+export class Member extends DatabaseResult {
   id: string;
   firstName: string;
   lastName: string
@@ -9,6 +9,7 @@ export class Member {
   admin: boolean;
 
   constructor() {
+    super();
     this.id = DatabaseHelper.emptyGuid;
     this.firstName = '';
     this.lastName = '';

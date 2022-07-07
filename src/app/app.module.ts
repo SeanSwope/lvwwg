@@ -24,6 +24,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +51,8 @@ import { AdminEmailComponent } from './admin/email/email.component';
 import { AdminHomeComponent } from './admin/home/home.component';
 import { AdminLinksComponent } from './admin/links/links.component';
 import { AdminMeetingsComponent } from './admin/meetings/meetings.component';
+import { AdminDonationsComponent } from './admin/donations/donations.component';
+import { FileUploadComponent } from './admin/shared/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,8 @@ import { AdminMeetingsComponent } from './admin/meetings/meetings.component';
     AdminEmailComponent,
     AdminLinksComponent,
     AdminMeetingsComponent,
+    AdminDonationsComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,6 +107,8 @@ import { AdminMeetingsComponent } from './admin/meetings/meetings.component';
     ConfirmDialogModule,
     DialogModule,
     CalendarModule,
+    InputNumberModule,
+    FileUploadModule,
     NgxExtendedPdfViewerModule,
   ],
   providers: [],

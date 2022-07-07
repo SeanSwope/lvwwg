@@ -1,0 +1,16 @@
+<div class="contents">
+  <input #fileUpload type="file" class="file-input" (change)="onFileSelected($event)">
+
+  <div class="file-upload">
+    <div class="name-field">
+      <input id="upload-name" type="text" pInputText [(ngModel)]="fileName" />
+    </div>
+
+    <div class="button-field">
+      <!--     <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button> -->
+          <button pButton pRipple label="Browse" icon="pi pi-file" class="p-button-text" (click)="fileUpload.click()"></button>
+    </div>
+  </div>
+</div>

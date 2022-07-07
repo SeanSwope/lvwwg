@@ -8,6 +8,12 @@ export class DatabaseResult {
   }
 }
 
+export enum ErrorCodes {
+  noError = 0,
+  duplicate,
+  missingParameter,
+}
+
 export class DatabaseHelper {
   static emptyGuid: string = 'EMPTY-ID';
 }

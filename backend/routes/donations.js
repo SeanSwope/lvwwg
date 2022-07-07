@@ -1,8 +1,10 @@
 var express = require('express');
-const donationsController = require("../controllers/donations-controller");
+const donationsController = require("../controllers/donations.controller");
 var router = express.Router();
 
-// router.get("/list", donationsController.getLibraryList);
-// router.get("/:id", donationsController.getLibraryStats);
+router.post("/", donationsController.createDonation);
+router.get("/bulk", donationsController.getDonationsBulk);
+router.put("/:id", donationsController.updateDonation);
+router.delete("/:id", donationsController.deleteDonation);
 
 module.exports = router;

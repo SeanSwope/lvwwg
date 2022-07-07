@@ -1,0 +1,156 @@
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newDonation()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="donations"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Donations</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Block Sets</th>
+        <th>Racecars</th>
+        <th>Rocking Horses</th>
+        <th>Trains</th>
+        <th>Wands</th>
+        <th>Misc.</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-donation>
+      <tr>
+        <td>{{donation.organizationName}}</td>
+        <td>{{donation.donationYear | date:'yyyy'}}</td>
+        <td>{{donation.blockSets}}</td>
+        <td>{{donation.racecars}}</td>
+        <td>{{donation.rockingHorses}}</td>
+        <td>{{donation.trains}}</td>
+        <td>{{donation.wands}}</td>
+        <td>{{donation.misc}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editDonation(donation)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteDonation(donation)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{donations ? donations.length : 0 }} donations.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="donationDialog" [style]="{width: '450px'}" header="Donation Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+
+    <div class="p-field">
+      <label for="dntn-name">Name</label>
+      <input id="dntn-name" type="text" pInputText [(ngModel)]="donation.organizationName" />
+    </div>
+    <div class="p-field">
+      <label for="dntn-year">Year</label>
+      <p-calendar
+        id="dntn-date"
+        [(ngModel)]="donation.donationYear"
+        view="year"
+        dateFormat="yy">
+      </p-calendar>
+    </div>
+    <div class="p-field">
+      <label for="dntn-block">Block Sets</label>
+      <p-inputNumber
+        id="dntn-block"
+        [(ngModel)]="donation.blockSets"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        spinnerMode="horizontal"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="dntn-cars">Racecars</label>
+      <p-inputNumber
+        id="dntn-cars"
+        [(ngModel)]="donation.racecars"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        spinnerMode="horizontal"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="dntn-horses">Rocking Horses</label>
+      <p-inputNumber
+        id="dntn-horses"
+        [(ngModel)]="donation.rockingHorses"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        spinnerMode="horizontal"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="dntn-trains">Trains</label>
+      <p-inputNumber
+        id="dntn-trains"
+        [(ngModel)]="donation.trains"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        spinnerMode="horizontal"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="dntn-wands">Wands</label>
+      <p-inputNumber
+        id="dntn-wands"
+        [(ngModel)]="donation.wands"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        spinnerMode="horizontal"
+        decrementButtonClass="p-button-danger"
+        incrementButtonClass="p-button-success"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="dntn-misc">Misc</label>
+      <input id="dntn-misc" type="text" pInputText [(ngModel)]="donation.misc" />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveDonation()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

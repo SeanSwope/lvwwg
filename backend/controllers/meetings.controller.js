@@ -1,15 +1,17 @@
 var sql = require("mssql");
 const queries = require('../queries/queries.json');
+const config = require('../queries/database-config.json');
 
-var config = {
-  user: 'lvwwgdb',
-  password: '12345',
-  server: 'PC-03',
-  database: 'lvwwg',
-  port: 1433,
-  dialect: 'mssql',
-  options: { encrypt: false },
-};
+
+// var config = {
+//   user: 'lvwwgdb',
+//   password: '12345',
+//   server: 'PC-03',
+//   database: 'lvwwg',
+//   port: 1433,
+//   dialect: 'mssql',
+//   options: { encrypt: false },
+// };
 
 exports.createMeeting = (req, res, next) => {
   //sql.close();

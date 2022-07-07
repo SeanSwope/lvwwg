@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageDetails } from '../models/image.model';
+import { ImageDetail } from '../models/image.model';
 import { DatabaseService } from '../services/database.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { DatabaseService } from '../services/database.service';
   styleUrls: ['./gallery.component.less']
 })
 export class GalleryComponent implements OnInit {
-  images: Array<ImageDetails> = [];
+  images: Array<ImageDetail> = [];
   responsiveOptions: Array<{breakpoint: string, numVisible: number, numScroll: number}> = [];
 
   constructor(
@@ -34,7 +34,7 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.databaseService.getImages().subscribe(images => {
+    this.databaseService.getAllImages().subscribe(images => {
       this.images = images!;
     });
   }

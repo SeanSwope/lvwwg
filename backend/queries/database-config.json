@@ -1,0 +1,10 @@
+{
+  "user": "lvwwgdb",
+  "password": "12345",
+  "server": "PC-03",
+  "database": "lvwwg",
+  "dialect": "mssql",
+  "options": {
+    "encrypt": false
+   }
+}

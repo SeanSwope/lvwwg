@@ -8,5 +8,24 @@
   "getAllMembers" : "SELECT [ID],[FIRSTNAME],[LASTNAME],[EMAIL],[PASSWORD],[ADMIN] FROM [dbo].[MEMBERS] ORDER BY [LASTNAME],[FIRSTNAME]",
   "createMember" : "INSERT INTO [dbo].[MEMBERS] ([ID],[FIRSTNAME],[LASTNAME],[EMAIL],[PASSWORD],[ADMIN]) VALUES (NEWID(),@firstname,@lastname,@email,@password,@admin)",
   "deleteMember" : "DELETE FROM [dbo].[MEMBERS] WHERE [ID]=@id",
-  "updateMember" : "UPDATE [dbo].[MEMBERS] SET [FIRSTNAME]=@firstName,[LASTNAME]=@lastName,[EMAIL]=@email,[PASSWORD]=@password,[ADMIN]=@admin WHERE [ID]=@id"
+  "updateMember" : "UPDATE [dbo].[MEMBERS] SET [FIRSTNAME]=@firstName,[LASTNAME]=@lastName,[EMAIL]=@email,[PASSWORD]=@password,[ADMIN]=@admin WHERE [ID]=@id",
+
+  "getAllDonations" : "SELECT [ID],[ORGANIZATIONNAME],[DONATIONYEAR],[BLOCKSETS],[RACECARS],[ROCKINGHORSES],[TRAINS],[WANDS],[MISC] FROM [dbo].[DONATIONDETAILS] ORDER BY [ORGANIZATIONNAME]",
+  "createDonation" : "INSERT INTO [dbo].[DONATIONDETAILS] ([ID],[ORGANIZATIONNAME],[DONATIONYEAR],[BLOCKSETS],[RACECARS],[ROCKINGHORSES],[TRAINS],[WANDS],[MISC]) VALUES (NEWID(),@orgName,@year,@blocks,@cars,@horses,@trains,@wands,@misc)",
+  "deleteDonation" : "DELETE FROM [dbo].[DONATIONDETAILS] WHERE [ID]=@id",
+  "updateDonation" : "UPDATE [dbo].[DONATIONDETAILS] SET [ID]=@id,[ORGANIZATIONNAME]=@orgName,[DONATIONYEAR]=@year,[BLOCKSETS]=@blocks,[RACECARS]=@cars,[ROCKINGHORSES]=@horses,[TRAINS]=@trains,[WANDS]=@wands,[MISC]=@misc WHERE [ID]=@id",
+
+  "getAllLinks" : "SELECT [ID],[COMPANYNAME],[STREETADDRESS],[STREETADDRESS2],[CITYSTATEADDRESS],[CONTACT],[PHONE],[MESSAGE],[URL],[CATEGORY] FROM [dbo].[LINKDETAILS] ORDER BY [CATEGORY],[COMPANYNAME]",
+  "createLink" : "INSERT INTO [dbo].[LINKDETAILS] ([ID],[COMPANYNAME],[STREETADDRESS],[STREETADDRESS2],[CITYSTATEADDRESS],[CONTACT],[PHONE],[MESSAGE],[URL],[CATEGORY]) VALUES (NEWID(),@name,@addr1,@addr2,@city,@contact,@phone,@msg,@url,@category)",
+  "deleteLink" : "DELETE FROM [dbo].[LINKDETAILS] WHERE [ID]=@id",
+  "updateLink" : "UPDATE [dbo].[LINKDETAILS] SET [ID]=@id,[COMPANYNAME]=@name,[STREETADDRESS]=@addr1,[STREETADDRESS2]=@addr2,[CITYSTATEADDRESS]=@city,[CONTACT]=@contact,[PHONE]=@phone,[MESSAGE]=@msg,[URL]=@url,[CATEGORY]=@category WHERE [ID]=@id",
+  "duplicateLink" : "SELECT COUNT([ID]) AS COUNT FROM [dbo].[LINKDETAILS] WHERE [COMPANYNAME]=@name AND [CATEGORY]=@category",
+
+  "getCategories" : "SELECT NEWID() AS ID,T1.* FROM (SELECT distinct [CATEGORY] FROM [dbo].[LINKDETAILS]) T1",
+
+  "getAllImages": "SELECT [ID],[IMAGESOURCE],[ALT],[TITLE],[SUBTITLE] FROM [dbo].[IMAGEDETAILS]",
+  "createImage" : "INSERT INTO [dbo].[IMAGEDETAILS] ([ID],[IMAGESOURCE],[ALT],[TITLE],[SUBTITLE]) VALUES (NEWID(),@source,@alt,@title,@subtitle)",
+  "updateImage" : "UPDATE [dbo].[IMAGEDETAILS] SET [IMAGESOURCE]=@source,[ALT]=@alt,[TITLE]=@title,[SUBTITLE]=@subtitle WHERE [ID]=@id",
+  "deleteImage" : "DELETE FROM [dbo].[IMAGEDETAILS] WHERE [ID]=@id"
+
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map, tap } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { DatabaseService, Product } from '../../services/database.service';
+import { DatabaseService } from '../../services/database.service';
 import { MeetingDetails } from 'src/app/models/meeting-info.model';
 import { DatabaseHelper } from 'src/app/models/database-result.model';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { DatabaseService, Product } from '../../services/database.service';
+import { DatabaseService } from '../../services/database.service';
 import { DatabaseHelper } from 'src/app/models/database-result.model';
 import { Member } from 'src/app/models/member.model';
 

@@ -1,1 +1,116 @@
-<p>links works!</p>
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newLink()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="links"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+    rowGroupMode="subheader"
+    groupRowsBy="category">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Links</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+<!--         <th>Category</th> -->
+        <th>Company Name</th>
+        <th>Street Address</th>
+        <th>Street Address 2</th>
+        <th>City, State</th>
+        <th>contact</th>
+        <th>Phone</th>
+        <th>More Info</th>
+        <th>URL</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="groupheader" let-link>
+      <tr pRowGroupHeader>
+        <td colspan="5">
+          <i class="pi pi-folder" style="font-size: 1.5rem"></i>
+          <span class="p-text-bold p-ml-2">{{link.category}}</span>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-link>
+      <tr>
+<!--         <td>{{link.category}}</td>
+ -->        <td>{{link.companyName}}</td>
+        <td>{{link.streetAddress}}</td>
+        <td>{{link.streetAddress2}}</td>
+        <td>{{link.cityStateAddress}}</td>
+        <td>{{link.contact}}</td>
+        <td>{{link.phone}}</td>
+        <td>{{link.moreInfo}}</td>
+        <td>{{link.url}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editLink(link)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteLink(link)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{links ? links.length : 0 }} links.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="linkDialog" [style]="{width: '450px'}" header="Link Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="link-category">Category</label>
+      <p-dropdown id="link-category" [options]="categories" [(ngModel)]="link.category" [editable]="true" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="p-field">
+      <label for="link-name">Company Name</label>
+      <input id="link-name" type="text" pInputText [(ngModel)]="link.companyName" />
+    </div>
+    <div class="p-field">
+      <label for="link-addr1">Street Address</label>
+      <input id="link-addr1" type="text" pInputText [(ngModel)]="link.streetAddress" />
+    </div>
+    <div class="p-field">
+      <label for="link-addr2">Street Address 2</label>
+      <input id="link-addr2" type="text" pInputText [(ngModel)]="link.streetAddress2" />
+    </div>
+    <div class="p-field">
+      <label for="link-city">City, State</label>
+      <input id="link-city" type="text" pInputText [(ngModel)]="link.cityStateAddress" />
+    </div>
+    <div class="p-field">
+      <label for="link-contact">Contact</label>
+      <input id="link-contact" type="text" pInputText [(ngModel)]="link.contact" />
+    </div>
+    <div class="p-field">
+      <label for="link-phone">Phone</label>
+      <input id="link-phone" type="text" pInputText [(ngModel)]="link.phone" />
+    </div>
+    <div class="p-field">
+      <label for="link-more">More Info</label>
+      <input id="link-more" type="text" pInputText [(ngModel)]="link.moreInfo" />
+    </div>
+    <div class="p-field">
+      <label for="link-url">URL</label>
+      <input id="link-url" type="text" pInputText [(ngModel)]="link.url" />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveLink()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,0 +1,10 @@
+{
+  "user": "db_a8814d_lvwwg_admin",
+  "password": "0WpE7HOOzMU1WQ1p",
+  "server": "SQL5102.site4now.net",
+  "database": "db_a8814d_lvwwg",
+  "dialect": "mssql",
+  "options": {
+    "encrypt": false
+   },
+}
