@@ -26,6 +26,11 @@
   "getAllImages": "SELECT [ID],[IMAGESOURCE],[ALT],[TITLE],[SUBTITLE] FROM [dbo].[IMAGEDETAILS]",
   "createImage" : "INSERT INTO [dbo].[IMAGEDETAILS] ([ID],[IMAGESOURCE],[ALT],[TITLE],[SUBTITLE]) VALUES (NEWID(),@source,@alt,@title,@subtitle)",
   "updateImage" : "UPDATE [dbo].[IMAGEDETAILS] SET [IMAGESOURCE]=@source,[ALT]=@alt,[TITLE]=@title,[SUBTITLE]=@subtitle WHERE [ID]=@id",
-  "deleteImage" : "DELETE FROM [dbo].[IMAGEDETAILS] WHERE [ID]=@id"
+  "deleteImage" : "DELETE FROM [dbo].[IMAGEDETAILS] WHERE [ID]=@id",
+
+  "getAllMarketItems": "SELECT [ID],[POSTEDDATE],[POSTEDBY],[CONTACTINFO],[NAME],[DESCRIPTION],[PRICE],[IMAGE] FROM [dbo].[MARKETITEMS]",
+  "createMarketItem" : "INSERT INTO [dbo].[MARKETITEMS] ([ID],[POSTEDDATE],[POSTEDBY],[CONTACTINFO],[NAME],[DESCRIPTION],[PRICE],[IMAGE]) VALUES (NEWID(),@postedDate,@postedBy,@contactInfo,@name,@descr,@price,@image)",
+  "updateMarketItem" : "UPDATE [dbo].[MARKETITEMS] SET [POSTEDDATE]=@postedDate,[POSTEDBY]=@postedBy,[CONTACTINFO]= @contactInfo,[NAME]=@name,[DESCRIPTION]=@descr,[PRICE]=@price,[IMAGE]=@image WHERE [ID]=@id",
+  "deleteMarketItem" : "DELETE FROM [dbo].[MARKETITEMS] WHERE [ID]=@id"
 
 }

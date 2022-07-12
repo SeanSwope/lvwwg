@@ -1,1 +1,106 @@
-<p>market works!</p>
+<div class="contents">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="newItem()"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table #dt
+    [value]="marketItems"
+    [rows]="10"
+    [paginator]="true"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Manage Market Items</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Posted Date</th>
+        <th>Posted By</th>
+        <th>Contact Info</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{item.postedDate | date:'longDate'}}</td>
+        <td>{{item.postedBy}}</td>
+        <td>{{item.contactInfo}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.price | currency}}</td>
+        <td>{{item.image}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editItem(item)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteItem(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{marketItems ? marketItems.length : 0 }} market items.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="marketItemDialog" [style]="{width: '450px'}" header="MarkeItem Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="market-date">Posted Date</label>
+      <p-calendar
+        id="market-date"
+        [(ngModel)]="currentPostedDate"
+        dateFormat="MM dd yy">
+      </p-calendar>
+      <small class="p-invalid" *ngIf="submitted && !currentPostedDate">Date is required.</small>
+    </div>
+
+    <div class="p-field">
+      <label for="market-postedBy">Posted By</label>
+      <input id="market-postedBy" type="text" pInputText [(ngModel)]="marketItem.postedBy" />
+    </div>
+    <div class="p-field">
+      <label for="marketcontact">Contact Info</label>
+      <input id="market-contact" type="text" pInputText [(ngModel)]="marketItem.contactInfo" />
+    </div>
+    <div class="p-field">
+      <label for="market-name">Item Name</label>
+      <input id="market-name" type="text" pInputText [(ngModel)]="marketItem.name" />
+    </div>
+    <div class="p-field">
+      <label for="market-descr">Description</label>
+      <input id="market-descr" type="text" pInputText [(ngModel)]="marketItem.description" />
+    </div>
+    <div class="p-field">
+      <label for="market-price">Price</label>
+      <p-inputNumber id="market-price" [(ngModel)]="marketItem.price" inputId="currency-us" mode="currency" currency="USD" locale="en-US">
+      </p-inputNumber>
+    </div>
+    <div class="p-field">
+      <label for="market-name">Image</label>
+      <app-file-upload
+        [defaultFilename]="marketItem.image"
+        [(selectedFile)]="selectedImage">
+      </app-file-upload>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveItem()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-messages></p-messages>
+

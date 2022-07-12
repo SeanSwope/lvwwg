@@ -16,7 +16,7 @@ exports.createImage = (req, res, next) => {
     }
 
     // create Request object
-    var request = new sql.Request();
+    var request = new sql.Request(); 
 
     // Add parameter
     request.input('source', sql.VarChar, req.body.imageSource);
@@ -196,12 +196,3 @@ exports.uploadImage = (req, res, next) => {
   }
 }
 
-// https://futurestud.io/tutorials/node-js-check-if-a-file-exists
-// async function exists (path) {
-//   try {
-//     await Fs.access(path)
-//     return true
-//   } catch {
-//     return false
-//   }
-// }

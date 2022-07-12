@@ -20,26 +20,70 @@ export class DatabaseService {
     private http: HttpClient,
   ) { }
 
-  /* //upload file method
-  uploadFile(file: any) {
-    const formData: FormData = new FormData();
-    formData.append('file', file, file.name);
-    //append any other key here if required
-    return this.http.post(`<upload URL>`, formData);
+  // **********************
+  // Market Items
+  // **********************
+  createMarketItem(marketItem: MarketItem, image: File): Observable<DatabaseResult> {
+    console.log('createMarketItem');
+    const formData = new FormData();
+    formData.append("file", image);
+
+    return this.http.post<DatabaseResult>(this.apiURL + '/market-items/upload', formData).pipe(
+      switchMap(uploadResult => {
+        console.log(uploadResult);
+        return this.http.post<DatabaseResult>(this.apiURL + '/market-items', marketItem).pipe(
+          map(result => {
+            if (result.errorCode === 0 && uploadResult.errorCode !== 0 && image.name !== '') {
+              result = uploadResult;
+            }
+            return result;
+          })
+        );
+      })
+    );
   }
 
-  //delete file method
-  deleteAttachment(deleteList: Array<any>) {
-    if (deleteList.length) {
-      //for multiple delete do foreach here
-      const body = { filename: deleteList[0].uploadname };
-      const options = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-        responseType: 'blob'
-      };
-      return this.http.post(`<delete file api>`, body, options);
-    }
-  } */
+  updateMarketItem(marketItem: MarketItem, image: File): Observable<DatabaseResult> {
+    console.log('updateMarketItem');
+    const formData = new FormData();
+    formData.append("file", image);
+
+    return this.http.post<DatabaseResult>(this.apiURL + '/market-items/upload', formData).pipe(
+      switchMap(uploadResult => {
+        console.log(uploadResult);
+        return this.http.put<DatabaseResult>(this.apiURL + `/market-items/${marketItem.id}`, marketItem).pipe(
+          map(result => {
+            if (result.errorCode === 0 && uploadResult.errorCode !== 0) {
+              // Don't report same file as an error
+              if (uploadResult.errorCode === 1 && image.name !== marketItem.image) {
+                result = uploadResult;
+              }
+            }
+            return result;
+          })
+        )
+      })
+    );
+  }
+
+  deleteMarketItem(marketItem: MarketItem): Observable<DatabaseResult> {
+    return this.http.delete<DatabaseResult>(this.apiURL + `/market-items/${marketItem.id}`).pipe(
+      map(result => result as DatabaseResult)
+    );
+  }
+
+  getAllMarketItems(): Observable<Array<MarketItem>> {
+    return this.http.get<Array<MarketItem>>(this.apiURL + '/market-items/bulk').pipe(
+      map(results => {
+        const dateResults: Array<MarketItem> = [];
+        results.forEach(item => {
+          item.postedDate = new Date(item.postedDate);
+          dateResults.push(item);
+        })
+        return dateResults;
+      })
+    );
+  }
 
   // **********************
   // Images
@@ -484,6 +528,7 @@ export class DatabaseService {
     return of(links);
   }
 
+  /*
   getMarketItems(): Observable<Array<MarketItem>> {
     const marketItems: Array<MarketItem> = [
       {
@@ -522,6 +567,7 @@ export class DatabaseService {
 
     return of(marketItems);
   }
+*/
 
   private sortByDateTime(a: MeetingDetails, b: MeetingDetails) {
     if (a.dateTime < b.dateTime) {

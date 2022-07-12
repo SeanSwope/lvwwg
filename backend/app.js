@@ -12,7 +12,7 @@ var donationsRouter = require('./routes/donations');
 var linksRouter = require('./routes/links');
 // var newslettersRouter = require('./routes/newsletters');
 var imagesRouter = require('./routes/images');
-// var marketItemsRouter = require('./routes/market-items');
+var marketItemsRouter = require('./routes/market-items');
 
 var app = express();
 
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // enable files upload
 app.use(fileUpload({
-  createParentPath: true,
+  createParentPath: true, 
   debug: true
 }));
 
@@ -52,7 +52,7 @@ app.use('/api/donations', donationsRouter);
 app.use('/api/links', linksRouter);
 // app.use('/api/newsletters', newslettersRouter);
 app.use('/api/images', imagesRouter);
-// app.use('/api/market-item', marketItemsRouter);
+app.use('/api/market-items', marketItemsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -56,18 +56,6 @@
         [defaultFilename]="image.imageSource"
         [(selectedFile)]="selectedImage">
       </app-file-upload>
-<!--       <div class="content-row">
-        <input id="image-name" type="text" pInputText [(ngModel)]="image.imageSource" />
-        <p-fileUpload
-          mode="basic"
-          name="images"
-          url="http://localhost:3000/api/images/upload"
-          (onUpload)="onUpload($event)"
-          (onError)="onError($event)"
-          [auto]="true"
-          chooseLabel="Browse">
-        </p-fileUpload>
-      </div> -->
     </div>
     <div class="p-field">
       <label for="image-addr1">Alternate Text</label>
@@ -81,22 +69,6 @@
       <label for="image-city">Sub-Title</label>
       <input id="image-city" type="text" pInputText [(ngModel)]="image.subTitle" />
     </div>
-<!--     <div class="p-field">
-      <p-fileUpload
-        name="images"
-        url="http://localhost:3000/api/images/upload"
-        (onUpload)="onUpload($event)">
-
-        <ng-template pTemplate="content">
-          <ul *ngIf="uploadedFiles.length">
-              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-          </ul>
-      </ng-template>
-      </p-fileUpload>
-
-    </div>
- -->
-
   </ng-template>
   <ng-template pTemplate="footer">
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveImage()"></button>

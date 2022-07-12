@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DatabaseHelper } from 'src/app/models/database-result.model';
 import { ImageDetail } from 'src/app/models/image.model';
 import { DatabaseService } from '../../services/database.service';
-import { FileUpload } from 'primeng/fileupload';
-
 
 @Component({
   selector: 'app-admin-gallery',
@@ -20,9 +18,6 @@ export class AdminGalleryComponent implements OnInit {
   images: ImageDetail[] = [];
   image: ImageDetail = new ImageDetail();
   submitted = false;
-  uploadedFiles: any[] = [];
-  //@ViewChild('fileInput') fileInput: FileUpload;
-  attachments = [];
   selectedImage: File = new File([], '');
 
   constructor(
@@ -35,26 +30,6 @@ export class AdminGalleryComponent implements OnInit {
     this.loadImages();
   }
 
-  // onSubmit(): void {
-  //   const promiseList = [];
-  //   const ObservableList = [];
-  //   this.fileInput.files.forEach(file => {
-  //     promiseList.push(file);
-  //   });
-  // }
-
-/*   downloadFile(attachments: any[], i: number) {
-
-  }
-
-  deleteFile(attachments, i) {
-
-  }
-
-  isImage(file) {
-    return true;
-  }
- */
   newImage() {
     this.image = new ImageDetail();
     this.submitted = false;
@@ -129,44 +104,3 @@ export class AdminGalleryComponent implements OnInit {
     });
   }
 }
-
-
-/* import { FileUpload } from 'primeng/fileupload';
-import { forkJoin } from 'rxjs/observable/forkJoin';
-
-@ViewChild('fileInput') fileInput: FileUpload;
-
-//onSubmit upload file
-onSubmit(): void {
-  const promiseList = [];
-  const ObservableList = [];
-  this.fileInput.files.forEach(file => {
-    promiseList.push(this.uploadService.uploadFile(file));
-  });
-
-  //call delete function here in case of delete
-  //this.uploadService.deleteAttachment(this.deletedattachments);
-  if (promiseList.length) {
-    forkJoin(promiseList).subscribe(files => {
-      const date = new Date();
-      files.forEach(file => {
-        this.attachments.push({
-          originalname: file['originalname'],
-          uploadname: file['uploadname'],
-          uploadtime: date.getDate()
-        });
-      });
-      //Do form save here after uploading
-    },
-    err => {
-      console.log(err);
-    });
-  }
-}
-
-//Maintain delete list
-deleteFile(list, index) {
-  this.deletedattachments.push(this.attachments[index]);
-  this.attachments.splice(index, 1);
-}
- */

@@ -22,7 +22,7 @@ export class MembersMarketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.databaseService.getMarketItems().subscribe(items => {
+    this.databaseService.getAllMarketItems().subscribe(items => {
       this.martItems = items;
     });
   }
